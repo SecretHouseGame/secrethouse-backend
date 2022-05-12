@@ -1,0 +1,15 @@
+{
+    "name": "SecretHouse-backend",
+    "version": "1.0.0",
+    "description": "API for SecretHouse",
+    "main": "index.js",
+    "repository": "https://github.com/SecretHouseGame/secrethouse-backend",
+    "author": "HikariRom <romainfpro@gmail.com>",
+    "license": "MIT",
+    "private": true,
+    "dependencies": {
+    },
+    "scripts": {
+    }
+  }
+  
