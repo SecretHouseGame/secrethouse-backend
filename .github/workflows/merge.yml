@@ -24,4 +24,4 @@ jobs:
         uses: pascalgn/automerge-action@v0.14.2
         env:
           MERGE_LABELS: 'autorelease: pending'
-          GITHUB_TOKEN: ${{ secrets.TOKEN_REPO }}
+          GITHUB_TOKEN: ${{ secrets.TOKEN_GITHUB }}
