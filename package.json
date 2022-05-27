@@ -2,15 +2,16 @@
     "name": "SecretHouse-backend",
     "version": "1.0.0",
     "description": "API for SecretHouse",
-    "main": "index.js",
+    "main": "index.ts",
     "repository": "https://github.com/SecretHouseGame/secrethouse-backend",
-    "author": "HikariRom <romainfpro@gmail.com>",
+    "author": "HikariRom <romainfpro@gmail.com>, Neerfix <nicolas.notararigo@gmail.com>",
     "license": "MIT",
     "private": true,
     "dependencies": {
-        "express": "^4.18.1"
+        "express": "^4.18.1",
+        "firebase-functions": "^3.21.2"
     },
     "scripts": {
-        "start": "node src/index.js"
+        "start": "node functions/src/index.ts"
     }
 }
