@@ -4,7 +4,6 @@ import * as functions from "firebase-functions";
 // https://firebase.google.com/docs/functions/typescript
 
 export const api = functions
-    .region("europe-west3")
     .https
     .onRequest((request, response) => {
       functions.logger.info("Hello logs!", {structuredData: true});
