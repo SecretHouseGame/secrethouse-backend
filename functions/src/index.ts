@@ -26,7 +26,6 @@ app.use(controllers);
 app.use(cors);*/
 
 export const api = functions
-    .region("europe-west3")
     .https
     .onRequest((request, response) => {
       functions.logger.info("Hello logs!", {structuredData: true});
