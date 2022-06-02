@@ -1,6 +1,6 @@
 import {Router} from "express";
 import {User, UserRole} from "../bdd/entities";
-import {userHandler} from "../bdd";
+import {BddService} from "../services/BddService";
 import {BadRequestError, ServerSideError} from "../errors";
 import {castToLoginData} from "../types/request/bodyData";
 
@@ -13,7 +13,7 @@ router.post("/register/:role", async function(req, res, next) {
   try {
     switch (role) {
       case UserRole.VIEWER:
-        user = await userHandler.createUser(req.body);
+        user = await BddService.userHandler.createUser(req.body);
         break;
       case UserRole.PLAYER:
         // create player
@@ -32,7 +32,7 @@ router.post("/login", async function(req, res, next) {
   if (login == null) throw new BadRequestError("Invalid LoginData Data");
   let user;
   try {
-    user = userHandler.findUserByEmail(login.email);
+    user = BddService.userHandler.findUserByEmail(login.email);
   } catch (e) {
     console.log(e);
     throw new ServerSideError();

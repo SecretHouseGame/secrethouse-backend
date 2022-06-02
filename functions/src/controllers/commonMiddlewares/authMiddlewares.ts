@@ -1,13 +1,10 @@
 import {Request, Response, NextFunction} from "express";
 import {TokenService} from "../../services";
-import {User} from "../../bdd/entities";
 
-export function authGeneration(user: User) {
-  return function(req: Request, res: Response, next: NextFunction) {
-    const token = TokenService.generateToken(user);
+/* export function(req: Request, res: Response, next: NextFunction) {
+    const token = TokenService.generateToken(req.user);
     res.status(200).send(token);
-  };
-}
+}*/
 export function authVerification(req : Request, res: Response, next: NextFunction) {
   if (!("token" in req.params)) {
     res.status(400).send("Wrong Request Parameters");

@@ -1,20 +1,16 @@
 import {User} from "../bdd/entities";
-import {EntityManager, MySqlDriver, SqlEntityManager} from "@mikro-orm/mysql";
+import {EntityManager, MySqlDriver} from "@mikro-orm/mysql";
 import {MikroORM} from "@mikro-orm/core";
 import {TsMorphMetadataProvider} from "@mikro-orm/reflection";
+import {UserHandler} from "../bdd/entityHandlers";
 
 export class BddService {
-  private static em: EntityManager|null = null;
+  static entityManager: EntityManager;
+  private static user: UserHandler;
   private static orm: MikroORM<MySqlDriver>;
-  static get entityManager():EntityManager {
-    if (this.em == null) {
-      this.createOrm();
-    }
-    return <SqlEntityManager> this.em;
-  }
 
-  private static createOrm() {
-    MikroORM.init<MySqlDriver>({
+  static async createOrm() {
+    this.orm = await MikroORM.init<MySqlDriver>({
       entities: [User],
       dbName: "test",
       host: "nn26812-001.dbaas.ovh.net",
@@ -23,10 +19,12 @@ export class BddService {
       metadataProvider: TsMorphMetadataProvider,
       port: 35166,
       type: "mysql",
-    }).then((r)=> {
-      this.orm = r;
-      this.em = this.orm.em;
-      console.log(this.em);
     });
+    this.entityManager = this.orm.em as EntityManager;
+  }
+
+  static get userHandler(): UserHandler {
+    if (this.user == null) this.user = new UserHandler(this.entityManager);
+    return this.user;
   }
 }
