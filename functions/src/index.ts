@@ -8,7 +8,9 @@ import {RequestContext} from "@mikro-orm/core";
 import controllers from "./controllers";
 import {BddService} from "./services/BddService";
 import {ServerSideError} from "./errors";
+import {config} from "dotenv";
 
+config();
 
 const app = express();
 app.use(express.json());
@@ -22,12 +24,12 @@ app.use(async (req, res, next) =>{
   RequestContext.create(BddService.entityManager, next);
 });
 app.use(controllers);
+app.listen(3000, () => {
+  console.log(`Example app listening on port ${3000}`);
+});
 /* const cors = require('cors')({origin: true});
 app.use(cors);*/
 
 export const api = functions
     .https
-    .onRequest((request, response) => {
-      functions.logger.info("Hello logs!", {structuredData: true});
-      response.send("Hello from Firebase!");
-    });
+    .onRequest(app);

@@ -2,15 +2,35 @@
 
 ## Base de donnée
 
+### Identifiants
 _Infos sur le discord._
 
-## Dev Local
+### Création
+Pour crée la base de donnée et les tables correspondantes, il faut :
+(secrethouse-backend/functions)
 
+Build l'application
+> npm run build
+
+Lancer le script de création:
+> node lib/bdd/createDb.js
+## Dev Local
+### Firebase tools
 Nécessite d'installer firebase cli avec :`npm install -g firebase-tools`
 
 Pour lancer le projet en local :
 `firebase serve`
 
+### Environement
+Necessite de crée un **.env** et de renseigner les champs:
+```
+SECRET_KEY={token secret key}
+DB_NAME={Db name}
+DB_PASSWORD={Db password}
+DB_USER={Db user}
+DB_PORT={Db port}
+DB_HOST={Db host url}
+```
 ## Déploiement
 
 Pour release une feature ou un fix :

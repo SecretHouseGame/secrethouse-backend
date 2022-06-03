@@ -10,9 +10,9 @@ export class UserHandler extends EntityHandler {
   }
 
   async createUser(payload:any, role: UserRole = UserRole.VIEWER) {
-    const data = castToUserData(payload);
-    if (data === null) return null;
-    const user = new User(data, role);
+    const userData = castToUserData(payload);
+    if (userData === null) return null;
+    const user = new User(userData, role);
     await this.repository.persistAndFlush(user);
     return user;
   }

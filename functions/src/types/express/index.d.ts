@@ -3,7 +3,13 @@ import {UserPayload} from "../request";
 declare global{
     namespace Express{
         interface Request{
-            user?:UserPayload;
+            currentUser:UserPayload;
         }
     }
 }
+
+/* declare module "express"{
+    interface Request{
+        user?: UserPayload;
+    }
+} */

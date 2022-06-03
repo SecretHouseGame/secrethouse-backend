@@ -9,6 +9,7 @@
     "strict": true,
     "target": "es2017",
     "declaration": true,
+    //"typeRoots": ["types"]
   },
   "compileOnSave": true,
   "include": [
