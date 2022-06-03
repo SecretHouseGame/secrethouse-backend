@@ -6,8 +6,12 @@
 _Infos sur le discord._
 
 ### Création
-Pour crée la base de donnée et les tables correspondantes, il faut :
-(secrethouse-backend/functions)
+Dans ***secrethouse-backend/functions*** :
+
+Reférencer chaque entité dans la config de l'orm ***mikroOrm.config.ts***:
+> entities: [User, Author, etc, ...]
+
+Pour crée la base de donnée et les tables correspondantes :
 
 Build l'application
 > npm run build
