@@ -1,8 +1,6 @@
-import * as functions from "firebase-functions";
-
 // Start writing Firebase Functions
 // https://firebase.google.com/docs/functions/typescript
-
+require("express-async-errors");
 import * as express from "express";
 import {RequestContext} from "@mikro-orm/core";
 import controllers from "./controllers";
@@ -30,6 +28,7 @@ app.listen(3000, () => {
 /* const cors = require('cors')({origin: true});
 app.use(cors);*/
 
+import * as functions from "firebase-functions";
 export const api = functions
     .https
     .onRequest(app);
