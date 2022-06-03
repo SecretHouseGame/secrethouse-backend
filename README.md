@@ -26,7 +26,7 @@ Pour lancer le projet en local :
 `firebase serve`
 
 ### Environement
-Necessite de crée un **.env** et de renseigner les champs:
+Necessite de créer un **.env** et de renseigner les champs:
 ```
 SECRET_KEY={token secret key}
 DB_NAME={Db name}
