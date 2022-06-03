@@ -9,10 +9,9 @@ export function tokenGeneration(req: Request, res: Response, next: NextFunction)
 }
 
 export function authVerification(req : Request, res: Response, next: NextFunction) {
-  if (!("token" in req.params)) throw new BadRequestError("There is no token attached");
-  const token = req.params.token;
-  const userPayload = TokenService.verifyToken(token);
-  if (userPayload == null) throw new UnauthorizedError();
-  req.currentUser = userPayload;
+  if (! ("token" in req.headers)) throw new BadRequestError("Need an authorization token");
+  const payload = TokenService.verifyToken(<string>req.headers["token"]);
+  if (payload == null) throw new UnauthorizedError();
+  req.currentUser = payload;
   next();
 }

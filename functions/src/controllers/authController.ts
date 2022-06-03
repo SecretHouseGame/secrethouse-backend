@@ -2,7 +2,7 @@ import {Router} from "express";
 import {BddService} from "../services/BddService";
 import {BadRequestError} from "../errors";
 import {castToLoginData} from "../types/request/bodyData";
-import {tokenGeneration} from "./commonMiddlewares/authMiddlewares";
+import {authVerification, tokenGeneration} from "./commonMiddlewares/authMiddlewares";
 const router = Router();
 
 router.post("/register", async function(req, res, next) {
@@ -41,4 +41,8 @@ router.post("/login", async function(req, res, next) {
   next();
 }, tokenGeneration);
 
+router.get("/testtoken", authVerification, function(req, res, next) {
+  console.log("auth success");
+  return res.status(200).send("success");
+});
 export {router as authController};

@@ -17,7 +17,7 @@ export class UserHandler extends EntityHandler {
     return user;
   }
 
-  async findUserById(id:string) {
+  async findUserById(id:number) {
     return await this.repository.findOne({id: id});
   }
 
@@ -28,5 +28,4 @@ export class UserHandler extends EntityHandler {
   async findUserByUsername(username:string) {
     return await this.repository.findOne({username: username});
   }
-
 }
