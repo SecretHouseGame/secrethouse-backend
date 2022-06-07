@@ -1,8 +1,7 @@
-import {User} from "../bdd/entities";
 import {EntityManager, MySqlDriver} from "@mikro-orm/mysql";
-import {MikroORM} from "@mikro-orm/core";
-import {TsMorphMetadataProvider} from "@mikro-orm/reflection";
+import {MikroORM, Options} from "@mikro-orm/core";
 import {UserHandler} from "../bdd/entityHandlers";
+import mikroOrmConfig from "../mikroOrm.config";
 
 export class BddService {
   static entityManager: EntityManager;
@@ -10,16 +9,7 @@ export class BddService {
   private static orm: MikroORM<MySqlDriver>;
 
   static async createOrm() {
-    this.orm = await MikroORM.init<MySqlDriver>({
-      entities: [User],
-      dbName: "test",
-      host: "nn26812-001.dbaas.ovh.net",
-      user: "secrethouse",
-      password: "03c4s4wC3jqLaCgYIARAAGAMSNwF",
-      metadataProvider: TsMorphMetadataProvider,
-      port: 35166,
-      type: "mysql",
-    });
+    this.orm = await MikroORM.init<MySqlDriver>(<Options<MySqlDriver>>mikroOrmConfig());
     this.entityManager = this.orm.em as EntityManager;
   }
 

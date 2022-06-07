@@ -1,26 +1,19 @@
 import * as jwt from "jsonwebtoken";
+import {UserPayload} from "../types/request";
 
 export class TokenService {
-  static key = "J'aime les pates";
   static expTime= "24h";
-  static generateToken(userData:object): string {
-    return jwt.sign(userData, this.key, {expiresIn: this.expTime});
+  static generateToken(userPayload:UserPayload): string {
+    const key = process.env.SECRET_KEY;
+    return jwt.sign(userPayload, key, {expiresIn: this.expTime});
   }
 
-  static verifyToken(token: string):boolean {
+  static verifyToken(token: string):UserPayload | null {
+    const key = process.env.SECRET_KEY;
     try {
-      jwt.verify(token, this.key);
-      return true;
+      return <UserPayload>jwt.verify(token, key);
     } catch (error) {
-      return false;
-    }
-  }
-  static decodeToken(token:string):any {
-    try {
-      return jwt.decode(token);
-    } catch (e) {
-      console.log(e);
-      return {error: true};
+      return null;
     }
   }
 }

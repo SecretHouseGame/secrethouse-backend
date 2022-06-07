@@ -1,16 +1,16 @@
-export type UserData = {
+export interface UserData {
     username: string;
     email: string;
     password: string;
 }
 
-export function castToUserData(value:any): UserData | null {
-  let data: UserData;
-  try {
-    data = value as UserData;
-    return data;
-  } catch (e) {
-    console.log(e);
-    return null;
-  }
+export function castToUserData(value:any): UserData|null {
+  const castedData = <UserData> value;
+  return (isUserData(castedData))? castedData : null;
+}
+
+function isUserData(data: UserData):data is UserData {
+  return data.username != undefined &&
+    data.email != undefined &&
+    data.password != undefined;
 }

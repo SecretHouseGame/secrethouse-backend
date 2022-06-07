@@ -1,49 +1,48 @@
 import {Router} from "express";
-import {User, UserRole} from "../bdd/entities";
 import {BddService} from "../services/BddService";
-import {BadRequestError, ServerSideError} from "../errors";
+import {BadRequestError} from "../errors";
 import {castToLoginData} from "../types/request/bodyData";
-
+import {authVerification, tokenGeneration} from "./commonMiddlewares/authMiddlewares";
 const router = Router();
 
-router.post("/register/:role", async function(req, res, next) {
-  const role: UserRole = User.castToUserRole(req.params.role);
-  if (role == UserRole.NONE) throw new BadRequestError("Invalid role");
+router.post("/register", async function(req, res, next) {
   let user;
+  console.log(req.body);
   try {
-    switch (role) {
-      case UserRole.VIEWER:
-        user = await BddService.userHandler.createUser(req.body);
-        break;
-      case UserRole.PLAYER:
-        // create player
-        break;
-    }
+    user = await BddService.userHandler.createUser(req.body);
   } catch (e) {
     console.log(e);
-    throw new ServerSideError();
   }
-  if (user != null) res.status(200);
-  else throw new BadRequestError("Invalid User Data");
-});
+  if (user == null) throw new BadRequestError("Invalid User Data");
+  else {
+    console.log(user);
+    req.currentUser = {
+      email: user.email,
+      id: user.id,
+    };
+    next();
+  }
+}, tokenGeneration);
 
 router.post("/login", async function(req, res, next) {
   const login = castToLoginData(req.body);
   if (login == null) throw new BadRequestError("Invalid LoginData Data");
   let user;
   try {
-    user = BddService.userHandler.findUserByEmail(login.email);
+    user = await BddService.userHandler.findUserByEmail(login.email);
   } catch (e) {
     console.log(e);
-    throw new ServerSideError();
   }
-  if (user != null) res.status(200);
-  else throw new BadRequestError("No user found for this email");
+  if (user == null) throw new BadRequestError("No user found for this email");
+  req.currentUser = {
+    email: user.email,
+    id: user.id,
+  };
+  next();
+}, tokenGeneration);
+
+router.get("/testtoken", authVerification, function(req, res, next) {
+  console.log("auth success");
+  return res.status(200).send("success");
 });
-
-
-// ----- Utils -----
-
-
-
 export {router as authController};

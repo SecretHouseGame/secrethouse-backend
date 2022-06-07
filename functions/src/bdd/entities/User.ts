@@ -18,7 +18,7 @@ export class User {
       password!: string;
 
     @Property()
-      profile_pic?: string;
+      profilePic?: string;
 
     @Enum(()=> UserRole)
       role : UserRole = UserRole.VIEWER;

@@ -10,14 +10,14 @@ export class UserHandler extends EntityHandler {
   }
 
   async createUser(payload:any, role: UserRole = UserRole.VIEWER) {
-    const data = castToUserData(payload);
-    if (data === null) return null;
-    const user = new User(data, role);
+    const userData = castToUserData(payload);
+    if (userData === null) return null;
+    const user = new User(userData, role);
     await this.repository.persistAndFlush(user);
     return user;
   }
 
-  async findUserById(id:string) {
+  async findUserById(id:number) {
     return await this.repository.findOne({id: id});
   }
 
@@ -28,5 +28,4 @@ export class UserHandler extends EntityHandler {
   async findUserByUsername(username:string) {
     return await this.repository.findOne({username: username});
   }
-
 }
