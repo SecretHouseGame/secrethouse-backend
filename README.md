@@ -11,7 +11,7 @@ Dans ***secrethouse-backend/functions*** :
 Reférencer chaque entité dans la config de l'orm ***mikroOrm.config.ts***:
 > entities: [User, Author, etc, ...]
 
-Pour crée la base de donnée et les tables correspondantes :
+Pour créer la base de données et les tables correspondantes :
 
 Build l'application
 > npm run build
@@ -26,7 +26,7 @@ Pour lancer le projet en local :
 `firebase serve`
 
 ### Environement
-Necessite de crée un **.env** et de renseigner les champs:
+Necessite de créer un **.env** et de renseigner les champs:
 ```
 SECRET_KEY={token secret key}
 DB_NAME={Db name}
