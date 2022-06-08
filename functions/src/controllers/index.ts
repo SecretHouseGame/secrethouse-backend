@@ -1,7 +1,7 @@
 import {Router} from "express";
 import {authController} from "./authController";
 import {gameController} from "./gameController";
-import {errorHandler} from "./commonMiddlewares/errorMiddlewares";
+import {errorHandler} from "./commonMiddlewares/errorMiddleware";
 import {NotFoundError} from "../errors";
 
 const router = Router();
