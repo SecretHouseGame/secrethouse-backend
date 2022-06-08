@@ -5,7 +5,6 @@ import mikroOrmConfig from "../mikroOrm.config";
 import {Game, User} from "../bdd/entities";
 import {TsMorphMetadataProvider} from "@mikro-orm/reflection";
 
-
 export class BddService {
   static entityManager: EntityManager;
   private static user: UserHandler;
