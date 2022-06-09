@@ -46,7 +46,7 @@ export class Game{
             const unityName: keyof typeof DelayUnities = value as keyof typeof DelayUnities;
             unity = DelayUnities[unityName];
         } catch (e) {
-            console.log(e);
+            console.error(e);
             return DelayUnities.MINUTES;
         }
         return unity;
