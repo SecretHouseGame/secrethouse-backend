@@ -5,7 +5,8 @@ import {BadRequestError} from "../errors";
 
 const router = Router();
 
-router.post("/games/create", async function(req, res, next) {
+router.post("/create", async function(req, res, next) {
+    // TODO : Not functionnal 
     const eliminationDelayUnity: DelayUnities = Game.castToDelayUnities(req.body.eliminationDelayUnity);
     const eventIntervalUnity: DelayUnities = Game.castToDelayUnities(req.body.eventIntervalUnity);
     const user = <User> await BddService.userHandler.findUserById(req.body.userId);

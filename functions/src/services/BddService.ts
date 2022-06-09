@@ -2,8 +2,6 @@ import {EntityManager, MySqlDriver} from "@mikro-orm/mysql";
 import {MikroORM, Options} from "@mikro-orm/core";
 import {GameHandler, UserHandler} from "../bdd/entityHandlers";
 import mikroOrmConfig from "../mikroOrm.config";
-import {Game, User} from "../bdd/entities";
-import {TsMorphMetadataProvider} from "@mikro-orm/reflection";
 
 export class BddService {
   static entityManager: EntityManager;
