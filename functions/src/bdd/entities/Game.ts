@@ -7,7 +7,7 @@ export class Game{
     @PrimaryKey()
     id!: number;
 
-    @Property()
+    @Property({ default: 16 })
     maxPlayers!: number;
 
     @Property({ default: null, nullable: true })
