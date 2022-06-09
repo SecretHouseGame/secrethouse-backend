@@ -10,10 +10,10 @@ export class Game{
     @Property()
     maxPlayers!: number;
 
-    @Property()
+    @Property({ default: null, nullable: true })
     startDate!: Date;
 
-    @Property()
+    @Property({ default: null, nullable: true })
     endDate!: Date;
 
     @Property()
