@@ -22,5 +22,15 @@ router.post("/create", authVerification, async function(req, res, next) {
     else throw new BadRequestError("Invalid Game Data");
 });
 
+router.get("/game/:id", async function (req, res, next) {
+    const idGame: number = +req.params.id;
+
+    if(isNaN(idGame) || idGame === 0) {
+        throw new BadRequestError("Game id not valid");
+    }
+
+    let game = <Game> await BddService.gameHandler.findGameById(idGame);
+    return res.status(200).send(game);
+})
 
 export {router as gameController};
