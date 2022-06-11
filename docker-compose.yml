@@ -6,9 +6,17 @@ services:
     environment:
       MYSQL_ROOT_PASSWORD: secrethouse
       MYSQL_USER: secrethouse
+      MYSQL_PASSWORD: secrethouse
       MYSQL_DATABASE: secrethouse
+    networks:
+      - secrethouse-network
   adminer:
     image: adminer
     restart: always
     ports:
       - 8080:8080
+    networks:
+      - secrethouse-network
+
+networks:
+   secrethouse-network:
