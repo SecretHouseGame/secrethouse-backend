@@ -1,5 +1,8 @@
 import {MikroORM} from "@mikro-orm/core";
 import mikroOrmConfig from "../mikroOrm.config";
+import {config} from "dotenv";
+
+config();
 
 (async () => {
   const orm = await MikroORM.init(mikroOrmConfig());
