@@ -9,15 +9,6 @@ export class PlayerHandler extends EntityHandler {
         super(entityManager, Player);
     }
 
-    // async createGame(payload: any, user: User, eventIntervalUnity: DelayUnities, eliminationDelayUnity: DelayUnities) {
-    //     const gameData = castToGameData(payload);
-        
-    //     if (gameData === null) return null;
-    //     const game = new Game(gameData, user, eventIntervalUnity, eliminationDelayUnity);
-    //     await this.repository.persistAndFlush(game);
-    //     return game;
-    // }
-
     async createPlayer(payload: any, user: User, game: Game, gender: Genders) {
 
         const playerData = castToPlayerData(payload);
