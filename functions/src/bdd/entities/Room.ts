@@ -1,4 +1,5 @@
 import {Entity, PrimaryKey, Property} from "@mikro-orm/core";
+import { RoomData } from "../../types/request/bodyData";
 
 @Entity()
 export class Room{
@@ -10,4 +11,9 @@ export class Room{
 
     @Property()
     isSecret!: boolean;
+
+    constructor(roomData: RoomData){
+        this.name = roomData.name;
+        this.isSecret = roomData.isSecret;
+    }
 }
