@@ -1,6 +1,7 @@
 import {Router} from "express";
 import {authController} from "./authController";
 import {gameController} from "./gameController";
+import {roomController} from "./roomController";
 import {errorHandler} from "./commonMiddlewares/errorMiddleware";
 import {NotFoundError} from "../errors";
 

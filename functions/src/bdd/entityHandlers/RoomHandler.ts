@@ -6,4 +6,8 @@ export class RoomHandler extends EntityHandler {
     constructor(entityManager: EntityManager) {
         super(entityManager, Room);
     }
+
+    async createRoom(payload: any) {
+        
+    }
 }
