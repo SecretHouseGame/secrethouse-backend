@@ -10,6 +10,7 @@ const router = Router();
 router.use("/auth", authController);
 router.use("/services", authController);
 router.use("/games", gameController);
+router.use("/rooms", roomController);
 router.use("*", (req, res, next) => {
   throw new NotFoundError();
 });
