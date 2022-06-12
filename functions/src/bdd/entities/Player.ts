@@ -29,6 +29,9 @@ export class Player{
     @Property({ default: true })
     canBuzz: boolean = true;
 
+    @Property({ default: true })
+    canBeBuzzed: boolean = true;
+
     @Property({ default: false })
     isNominated: boolean = false;
 
