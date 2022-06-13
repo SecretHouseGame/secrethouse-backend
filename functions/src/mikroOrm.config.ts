@@ -1,10 +1,10 @@
-import {User, Game, Room} from "./bdd/entities";
+import {User, Game, Room, RoomGame} from "./bdd/entities";
 import {TsMorphMetadataProvider} from "@mikro-orm/reflection";
 import {Options} from "@mikro-orm/core";
 
 const options = function(): Options {
   return {
-    entities: [Game, Room, User],
+    entities: [Game, Room, User, RoomGame],
     dbName: process.env.DB_NAME,
     host: process.env.DB_HOST,
     user: process.env.DB_USER,
