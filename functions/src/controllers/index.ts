@@ -4,6 +4,7 @@ import {gameController} from "./gameController";
 import {playerController} from "./playerController";
 import {roomController} from "./roomController";
 import {eventController} from "./eventController";
+import {buzzController} from "./buzzController";
 import {errorHandler} from "./commonMiddlewares/errorMiddleware";
 import {NotFoundError} from "../errors";
 
@@ -15,6 +16,7 @@ router.use("/games", gameController);
 router.use("/players", playerController);
 router.use("/events", eventController);
 router.use("/rooms", roomController);
+router.use("/buzzs", buzzController);
 router.use("*", (req, res, next) => {
   throw new NotFoundError();
 });
