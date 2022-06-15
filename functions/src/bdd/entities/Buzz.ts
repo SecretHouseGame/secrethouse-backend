@@ -2,7 +2,6 @@ import {Entity, Enum, ManyToOne, PrimaryKey, Property} from "@mikro-orm/core";
 import { BuzzData } from "../../types/request/bodyData/BuzzData";
 import {Event} from "./Event";
 import {Player} from "./Player";
-import { User } from "./User";
 
 @Entity()
 export class Buzz{
@@ -10,7 +9,7 @@ export class Buzz{
     id!: number;
 
     @ManyToOne()
-    user!: Player;
+    buzzer!: Player;
 
     @ManyToOne()
     event!: Event;
@@ -33,8 +32,8 @@ export class Buzz{
     @Enum(() => BuzzStatus)
     status!: string;
 
-    constructor(buzzData: BuzzData, user: Player, target: Player, event: Event, status: BuzzStatus) {
-        this.user = user;
+    constructor(buzzData: BuzzData, buzzer: Player, target: Player, event: Event, status: BuzzStatus) {
+        this.buzzer = buzzer;
         this.event = event;
         this.target = target;
         this.isConfirmed = buzzData.isConfirmed;
