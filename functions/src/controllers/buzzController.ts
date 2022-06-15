@@ -1,5 +1,5 @@
 import {Router} from "express";
-import { Buzz, BuzzStatus, Player } from "../bdd/entities";
+import { Buzz, BuzzStatus, Event, Player } from "../bdd/entities";
 import { BadRequestError } from "../errors";
 import { BddService } from "../services/BddService";
 import { authVerification } from "./commonMiddlewares/authMiddlewares";
@@ -18,7 +18,9 @@ router.post("/create", authVerification, async function (req,res,next) {
 
     const event = <Event> await BddService.eventHandler.findEventById(req.body.eventId);
 
-    if(event === null) throw new BadRequestError("Invalid Event Data");
+    if(event === null) {
+        throw new BadRequestError("Invalid Event Data");
+    };
 
     let buzz = await BddService.buzzHandler.createBuzz(req.body, buzzer, target, event, status);
 
