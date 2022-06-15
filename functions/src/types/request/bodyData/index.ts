@@ -4,3 +4,4 @@ export * from "./GameData";
 export * from "./RoomData";
 export * from "./RoomGameData";
 export * from "./EventData";
+export * from "./BuzzData";
