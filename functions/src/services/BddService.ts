@@ -1,6 +1,6 @@
 import {EntityManager, MySqlDriver} from "@mikro-orm/mysql";
 import {MikroORM, Options} from "@mikro-orm/core";
-import {GameHandler, PlayerHandler, RoomHandler, UserHandler} from "../bdd/entityHandlers";
+import {EventHandler, GameHandler, PlayerHandler, RoomHandler, UserHandler} from "../bdd/entityHandlers";
 import mikroOrmConfig from "../mikroOrm.config";
 
 export class BddService {
@@ -9,6 +9,7 @@ export class BddService {
   private static orm: MikroORM<MySqlDriver>;
   private static game: GameHandler;
   private static player: PlayerHandler;
+  private static event: EventHandler;
   private static room: RoomHandler;
 
   static async createOrm() {
@@ -34,5 +35,10 @@ export class BddService {
   static get roomHandler(): RoomHandler {
     if (this.room == null) this.room = new RoomHandler(this.entityManager);
     return this.room;
+  }
+
+  static get eventHandler(): EventHandler {
+    if (this.event == null) this.event = new EventHandler(this.entityManager);
+    return this.event;
   }
 }
