@@ -1,5 +1,8 @@
 import {Entity, Enum, ManyToOne, PrimaryKey, Property} from "@mikro-orm/core";
-import { Player } from "./Player";
+import {EventData} from "../../types/request/bodyData";
+import {Game} from "./Game";
+import {Player} from "./Player";
+import {User} from "./User";
 
 @Entity()
 export class Event{
@@ -7,19 +10,22 @@ export class Event{
     id!: number;
 
     @Property()
-    created_at: Date = new Date();
+    createdAt: Date = new Date();
 
     @Property()
-    updated_at: Date = new Date();
-
-    @Property()
-    isConfirmed: boolean = false;
+    updatedAt: Date = new Date();
 
     @Property()
     content!: string;
 
     @ManyToOne()
-    player_id!: Player;
+    user!: User;
+
+    @ManyToOne()
+    player!: Player;
+
+    @ManyToOne()
+    game!: Game;
 
     @Enum(() => EventTypes)
     type!: string;
@@ -27,6 +33,16 @@ export class Event{
     @Enum(() => EventStatus)
     status!: string;
 
+    constructor(eventData: EventData, player: Player, user: User, game: Game, eventType: EventTypes, eventStatus: EventStatus) {
+        this.content = eventData.content;
+        this.player = player;
+        this.user = user;
+        this.game = game;
+        this.type = eventType;
+        this.status = eventStatus;
+    }
+
+    // @FIXME : Si la requête ne contient pas ces types, ça renvoie une erreur vide de sens et ne remplit pas type/status 
     static castToEventTypes(value: string): EventTypes {
         let type: EventTypes = EventTypes.EVENT;
         try {
