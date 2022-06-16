@@ -11,7 +11,9 @@ export class BuzzHandler extends EntityHandler {
     async createBuzz(payload: any, buzzer: Player,target: Player, event: Event, status: BuzzStatus){
         const buzzData = castToBuzzData(payload);
 
-        if(buzzData === null) return null;
+        if(buzzData === null) {
+            return null;
+        } 
 
         const buzz = new Buzz(buzzData, buzzer, target, event, status);
 

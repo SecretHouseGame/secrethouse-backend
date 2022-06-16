@@ -54,7 +54,9 @@ export class BddService {
   }
 
   static get buzzHandler(): BuzzHandler {
-    if (this.buzz == null) this.buzz = new BuzzHandler(this.entityManager);
+    if (this.buzz == null) {
+      this.buzz = new BuzzHandler(this.entityManager);
+    } 
     return this.buzz;
   }
 }

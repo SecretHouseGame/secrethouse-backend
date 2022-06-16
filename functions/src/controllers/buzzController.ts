@@ -24,8 +24,12 @@ router.post("/create", authVerification, async function (req,res,next) {
 
     let buzz = await BddService.buzzHandler.createBuzz(req.body, buzzer, target, event, status);
 
-    if (buzz != null)  return res.status(200).send(buzz);
-    else throw new BadRequestError("Invalid Buzz Data");
+    if (buzz != null) {
+        return res.status(200).send(buzz);
+    }
+    else {
+        throw new BadRequestError("Invalid Buzz Data");
+    } 
 });
 
 router.get("/buzz/:id", async function (req, res, next) {
