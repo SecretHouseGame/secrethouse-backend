@@ -20,8 +20,12 @@ router.post("/create", authVerification, async function (req, res, next) {
 
     let event = await BddService.eventHandler.createEvent(req.body, player, user, game, eventType, eventStatus);
     
-    if (event != null)  return res.status(200).send(event);
-    else throw new BadRequestError("Invalid Event Data");
+    if (event != null) {
+        return res.status(200).send(event);
+    } 
+    else {
+        throw new BadRequestError("Invalid Event Data");
+    }
 });
 
 router.get("/event/:id", async function (req, res, next) {

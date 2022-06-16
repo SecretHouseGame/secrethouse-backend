@@ -18,27 +18,37 @@ export class BddService {
   }
 
   static get gameHandler(): GameHandler {
-    if (this.game == null) this.game = new GameHandler(this.entityManager);
+    if (this.game == null) {
+      this.game = new GameHandler(this.entityManager);
+    }
     return this.game;
   }
   
   static get playerHandler(): PlayerHandler {
-    if (this.player == null) this.player = new PlayerHandler(this.entityManager);
+    if (this.player == null) {
+      this.player = new PlayerHandler(this.entityManager);
+    } 
     return this.player;
   }
 
   static get userHandler(): UserHandler {
-    if (this.user == null) this.user = new UserHandler(this.entityManager);
+    if (this.user == null) {
+      this.user = new UserHandler(this.entityManager);
+    }
     return this.user;
   }
 
   static get roomHandler(): RoomHandler {
-    if (this.room == null) this.room = new RoomHandler(this.entityManager);
+    if (this.room == null) {
+      this.room = new RoomHandler(this.entityManager);
+    } 
     return this.room;
   }
 
   static get eventHandler(): EventHandler {
-    if (this.event == null) this.event = new EventHandler(this.entityManager);
+    if (this.event == null) {
+      this.event = new EventHandler(this.entityManager);
+    }
     return this.event;
   }
 }
