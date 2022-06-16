@@ -23,8 +23,12 @@ router.post("/create", authVerification, async function (req,res,next) {
 
     let nomination = await BddService.nominationHandler.createNomination(player, target, event);
 
-    if (nomination != null)  return res.status(200).send(nomination);
-    else throw new BadRequestError("Invalid Nomination Data");
+    if (nomination != null) {
+        return res.status(200).send(nomination);
+    }
+    else {
+        throw new BadRequestError("Invalid Nomination Data");
+    } 
 });
 
 router.get("/nomination/:id", async function (req, res, next) {

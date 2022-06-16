@@ -27,8 +27,12 @@ router.post("/create", authVerification, async function (req,res,next) {
 
     let vote = await BddService.voteHandler.createVote(user, target, event);
 
-    if (vote != null)  return res.status(200).send(vote);
-    else throw new BadRequestError("Invalid Vote Data");
+    if (vote != null) {
+        return res.status(200).send(vote);
+    }
+    else {
+        throw new BadRequestError("Invalid Vote Data");
+    }
 });
 
 router.get("/vote/:id", async function (req, res, next) {
