@@ -9,15 +9,23 @@ const router = Router();
 router.post("/create", authVerification, async function(req, res, next) {
     let room = await BddService.roomHandler.createRoom(req.body);
 
-    if (room != null) return res.status(200).send(room);
-    else throw new BadRequestError("Invalid Room Data");
+    if (room != null) {
+        return res.status(200).send(room);
+    }
+    else {
+        throw new BadRequestError("Invalid Room Data");
+    }
 
 });
 
 router.get("/", authVerification, async function(req, res, next) {
     let rooms = await BddService.roomHandler.findAll();
-    if (rooms != null) return res.status(200).send(rooms);
-    else throw new BadRequestError("No Rooms available");
+    if (rooms != null) {
+        return res.status(200).send(rooms);
+    }
+    else {
+        throw new BadRequestError("No Rooms available");
+    }
 })
 
 router.get("/room/:id", authVerification, async function(req, res, next){
