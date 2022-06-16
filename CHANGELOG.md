@@ -1,5 +1,12 @@
 # Changelog
 
+### [1.0.1](https://www.github.com/SecretHouseGame/secrethouse-backend/compare/v1.0.0...v1.0.1) (2022-06-16)
+
+
+### Bug Fixes
+
+* :butterfly: Fix {} ([e7717d7](https://www.github.com/SecretHouseGame/secrethouse-backend/commit/e7717d7e4e18b9ec19d44f4fd6f4846669cfe51b))
+
 ## 1.0.0 (2022-06-16)
 
 
