@@ -5,3 +5,5 @@ export * from "./RoomHandler";
 export * from "./RoomGameHandler";
 export * from "./EventHandler";
 export * from "./BuzzHandler";
+export * from "./VoteHandler";
+export * from "./NominationHandler";
