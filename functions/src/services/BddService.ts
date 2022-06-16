@@ -1,6 +1,6 @@
 import {EntityManager, MySqlDriver} from "@mikro-orm/mysql";
 import {MikroORM, Options} from "@mikro-orm/core";
-import {GameHandler, PlayerHandler, RoomHandler, UserHandler} from "../bdd/entityHandlers";
+import {EventHandler, GameHandler, PlayerHandler, RoomHandler, UserHandler} from "../bdd/entityHandlers";
 import mikroOrmConfig from "../mikroOrm.config";
 
 export class BddService {
@@ -9,6 +9,7 @@ export class BddService {
   private static orm: MikroORM<MySqlDriver>;
   private static game: GameHandler;
   private static player: PlayerHandler;
+  private static event: EventHandler;
   private static room: RoomHandler;
 
   static async createOrm() {
@@ -17,22 +18,37 @@ export class BddService {
   }
 
   static get gameHandler(): GameHandler {
-    if (this.game == null) this.game = new GameHandler(this.entityManager);
+    if (this.game == null) {
+      this.game = new GameHandler(this.entityManager);
+    }
     return this.game;
   }
   
   static get playerHandler(): PlayerHandler {
-    if (this.player == null) this.player = new PlayerHandler(this.entityManager);
+    if (this.player == null) {
+      this.player = new PlayerHandler(this.entityManager);
+    } 
     return this.player;
   }
 
   static get userHandler(): UserHandler {
-    if (this.user == null) this.user = new UserHandler(this.entityManager);
+    if (this.user == null) {
+      this.user = new UserHandler(this.entityManager);
+    }
     return this.user;
   }
 
   static get roomHandler(): RoomHandler {
-    if (this.room == null) this.room = new RoomHandler(this.entityManager);
+    if (this.room == null) {
+      this.room = new RoomHandler(this.entityManager);
+    } 
     return this.room;
+  }
+
+  static get eventHandler(): EventHandler {
+    if (this.event == null) {
+      this.event = new EventHandler(this.entityManager);
+    }
+    return this.event;
   }
 }
