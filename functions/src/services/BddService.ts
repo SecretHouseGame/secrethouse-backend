@@ -1,6 +1,6 @@
 import {EntityManager, MySqlDriver} from "@mikro-orm/mysql";
 import {MikroORM, Options} from "@mikro-orm/core";
-import {BuzzHandler, EventHandler, GameHandler, NominationHandler, PlayerHandler, RoomHandler, UserHandler, VoteHandler} from "../bdd/entityHandlers";
+import {BuzzHandler, EventHandler, GameHandler, NominationHandler, PlayerHandler, RoomGameHandler, RoomHandler, UserHandler, VoteHandler} from "../bdd/entityHandlers";
 import mikroOrmConfig from "../mikroOrm.config";
 
 export class BddService {
@@ -11,6 +11,7 @@ export class BddService {
   private static player: PlayerHandler;
   private static event: EventHandler;
   private static room: RoomHandler;
+  private static roomGame: RoomGameHandler;
   private static buzz: BuzzHandler;
   private static vote: VoteHandler;
   private static nomination: NominationHandler;
@@ -53,6 +54,13 @@ export class BddService {
       this.event = new EventHandler(this.entityManager);
     }
     return this.event;
+  }
+
+  static get roomGameHandler(): RoomGameHandler {
+    if (this.roomGame == null) {
+      this.roomGame = new RoomGameHandler(this.entityManager);
+    }
+    return this.roomGame;
   }
 
   static get buzzHandler(): BuzzHandler {
