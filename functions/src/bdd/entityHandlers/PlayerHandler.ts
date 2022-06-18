@@ -23,4 +23,12 @@ export class PlayerHandler extends EntityHandler {
     async findPlayerById(id: number) {
         return await this.repository.findOne({id: id});
     }
+
+    async findPlayerByUser(id: number) {
+        return await this.repository.findOne({user: id});
+    }
+
+    async findPlayerByGame(id: number) {
+        return await this.repository.find({game: id});
+    }
 }
