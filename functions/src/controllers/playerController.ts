@@ -23,8 +23,12 @@ router.post("/create", authVerification, async function(req, res, next) {
 
     let player = await BddService.playerHandler.createPlayer(req.body, user, game, gender);
 
-    if (player != null) return res.status(200).send(player);
-    else throw new BadRequestError("Invalid Player Data");
+    if (player != null) {
+        return res.status(200).send(player);
+    }
+    else {
+        throw new BadRequestError("Invalid Player Data");
+    }
 });
 
 router.get("/player/:id", async function (req, res, next) {
@@ -36,6 +40,17 @@ router.get("/player/:id", async function (req, res, next) {
 
     let player = <Player> await BddService.playerHandler.findPlayerById(idPlayer);
     return res.status(200).send(player);
-})
+});
+
+router.get("/", authVerification, async function (req,res, next) {
+    const idUser: number = req.currentUser.id;
+
+    if(isNaN(idUser) || idUser === 0) {
+        throw new BadRequestError("User id not valid");
+    }
+
+    let player = <Player> await BddService.playerHandler.findPlayerByUser(idUser);
+    return res.status(200).send(player);
+});
 
 export {router as playerController};
