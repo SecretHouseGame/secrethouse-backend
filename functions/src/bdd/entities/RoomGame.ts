@@ -1,17 +1,23 @@
-import {Entity, ManyToOne, PrimaryKeyType, Property} from "@mikro-orm/core";
+import {Entity, ManyToOne, PrimaryKey, Property} from "@mikro-orm/core";
 import {Room} from "./Room";
 import {Game} from "./Game";
 
 @Entity()
 export class RoomGame{
-    @ManyToOne({ primary: true })
+    @PrimaryKey()
+    id!: number;
+
+    @ManyToOne()
     room!: Room;
 
-    @ManyToOne({ primary: true })
+    @ManyToOne()
     game!: Game;
 
     @Property({default: false})
     isLocked: boolean = false;
 
-    [PrimaryKeyType]?: [number, number];
+    constructor(room: Room, game: Game){
+        this.room = room;
+        this.game = game;
+    }
 }

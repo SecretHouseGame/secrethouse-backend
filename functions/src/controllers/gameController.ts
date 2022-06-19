@@ -1,5 +1,5 @@
 import {Router} from "express";
-import {DelayUnities, Game, User} from "../bdd/entities";
+import {DelayUnities, Game, Player, Room, User} from "../bdd/entities";
 import {BddService} from "../services/BddService";
 import {authVerification} from "./commonMiddlewares/authMiddlewares";
 import {BadRequestError} from "../errors";
@@ -31,6 +31,28 @@ router.get("/game/:id", async function (req, res, next) {
 
     let game = <Game> await BddService.gameHandler.findGameById(idGame);
     return res.status(200).send(game);
+});
+
+router.get("/game/:id/players", async function (req,res,next) {
+    const idGame: number = +req.params.id;
+
+    if(isNaN(idGame) || idGame === 0) {
+        throw new BadRequestError("Game id not valid");
+    }
+
+    let players = <Player[]> await BddService.playerHandler.findPlayerByGame(idGame);
+    return res.status(200).send(players);
+});
+
+router.get("/game/:id/rooms", async function (req,res,next) {
+    const idGame: number = +req.params.id;
+
+    if(isNaN(idGame) || idGame === 0) {
+        throw new BadRequestError("Game id not valid");
+    }
+
+    let roomGames = <Room[]> await BddService.roomGameHandler.findRoomsByGame(idGame);
+    return res.status(200).send(roomGames);
 })
 
 export {router as gameController};
