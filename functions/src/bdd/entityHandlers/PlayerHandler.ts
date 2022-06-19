@@ -3,6 +3,7 @@ import { castToPlayerData } from "../../types/request/bodyData/PlayerData";
 import { Game, Genders, User } from "../entities";
 import { Player } from "../entities/Player";
 import {EntityHandler} from "./EntityHandler";
+import {LoadStrategy} from "@mikro-orm/core";
 
 export class PlayerHandler extends EntityHandler {
     constructor(entityManager: EntityManager) {
@@ -25,7 +26,13 @@ export class PlayerHandler extends EntityHandler {
     }
 
     async findPlayerByUser(id: number) {
-        return await this.repository.findOne({user: id});
+        return await this.repository.findOne(
+            {user: id, game: { endDate: {$eq: null} } },
+            {
+                populate: ['game'],
+                strategy: LoadStrategy.JOINED,
+            },
+        );
     }
 
     async findPlayerByGame(id: number) {
