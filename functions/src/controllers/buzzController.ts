@@ -1,3 +1,4 @@
+import { NotFoundError } from "@mikro-orm/core";
 import {Router} from "express";
 import { Buzz, BuzzStatus, Event, Player } from "../bdd/entities";
 import { BadRequestError } from "../errors";
@@ -41,6 +42,25 @@ router.get("/buzz/:id", async function (req, res, next) {
 
     let buzz = <Buzz> await BddService.buzzHandler.findBuzzById(idBuzz);
     return res.status(200).send(buzz);
-})
+});
 
+router.put("/buzz/:id", async function (req, res, next) {
+    const idBuzz: number = +req.params.id;
+
+    if(isNaN(idBuzz) || idBuzz === 0) {
+        throw new BadRequestError("Buzz id not valid");
+    }
+
+    const buzz = await BddService.buzzHandler.findBuzzById(idBuzz);
+
+    if(!buzz){
+        return new NotFoundError("Buzz not found");
+    }
+
+    await BddService.buzzHandler.update(req.body, idBuzz);
+
+    const newBuzz = <Buzz> await BddService.buzzHandler.findBuzzById(idBuzz);
+    
+    return res.status(200).send(newBuzz);
+});
 export  {router as buzzController};
