@@ -1,13 +1,12 @@
 export type BuzzData = {
     secret: string;
-    isConfirmed: boolean;
+    targetId: number;
 }
 
-export function castToBuzzData(value:any): BuzzData | null {
-  try {
-    return value as BuzzData;
-  } catch (e) {
-    console.error(e);
-    return null;
-  }
+export function castToBuzzData(value: any):BuzzData|null {
+  const castedData = <BuzzData> value;
+  return (isBuzzData(castedData))? castedData : null;
+}
+function isBuzzData(data:BuzzData):data is BuzzData {
+  return data.targetId != undefined && data.secret != undefined;
 }

@@ -28,7 +28,7 @@ app.listen(3000, () => {
 /* const cors = require('cors')({origin: true});
 app.use(cors);*/
 
-import * as functions from "firebase-functions";
+/* import * as functions from "firebase-functions";
 export const api = functions
     .https
-    .onRequest(app);
+    .onRequest(app);*/

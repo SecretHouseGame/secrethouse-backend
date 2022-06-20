@@ -1,5 +1,5 @@
 import {EntityManager} from "@mikro-orm/knex";
-import {castToPlayerData} from "../../types/request/bodyData/PlayerData";
+import {PlayerData} from "../../types/request/bodyData/PlayerData";
 import {Game, Genders, User} from "../entities";
 import {Player} from "../entities/Player";
 import {EntityHandler} from "./EntityHandler";
@@ -10,12 +10,8 @@ export class PlayerHandler extends EntityHandler {
     super(entityManager, Player);
   }
 
-  async createPlayer(payload: any, user: User, game: Game, gender: Genders) {
-    const playerData = castToPlayerData(payload);
-
-    if (playerData === null) return null;
-
-    const player = new Player(playerData, user, game, gender);
+  async createPlayer(payload: PlayerData, user: User, game: Game, gender: Genders) {
+    const player = new Player(payload, user, game, gender);
     await this.repository.persistAndFlush(player);
     return player;
   }
@@ -28,13 +24,31 @@ export class PlayerHandler extends EntityHandler {
     return await this.repository.findOne(
         {user: id, game: {endDate: {$eq: null}}},
         {
-          populate: ["game"],
+          populate: ["game", "user"],
           strategy: LoadStrategy.JOINED,
         },
     );
   }
 
-  async findPlayerByGame(id: number) {
+  async findPlayersByGame(id: number) {
     return await this.repository.find({game: id});
+  }
+
+  async getPlayerSecrets(gameId: number) {
+    const players = <Player[]> await this.repository.find({game: gameId}, {fields: ["secret", "secretDiscovered"]});
+    return players.map((player) => {
+      const secret = (player.secretDiscovered) ? player.secret : "******";
+      return {id: player.id, secret: secret};
+    });
+  }
+
+  async secretDiscovered(id: number) {
+    const player = await this.repository.findOne({id: id});
+    if (player === null) return null;
+    player.secretDiscovered = true;
+    player.canBeBuzzed = false;
+    await this.repository.flush();
+    console.log(player);
+    return player;
   }
 }

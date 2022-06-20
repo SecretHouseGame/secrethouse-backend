@@ -10,7 +10,6 @@ export class RoomHandler extends EntityHandler {
 
   async createRoom(payload: any) {
     const roomData = castToRoomData(payload);
-
     if (roomData === null) return null;
     const room = new Room(roomData);
     await this.repository.persistAndFlush(room);

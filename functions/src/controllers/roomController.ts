@@ -9,11 +9,8 @@ const router = Router();
 router.post("/create", authVerification, async function(req, res, next) {
   const room = await BddService.roomHandler.createRoom(req.body);
 
-  if (room != null) {
-    return res.status(200).send(room);
-  } else {
-    throw new BadRequestError("Invalid Room Data");
-  }
+  if (room != null) return res.status(200).send(room);
+  else throw new BadRequestError("Invalid Room Data");
 });
 
 router.get("/", authVerification, async function(req, res, next) {

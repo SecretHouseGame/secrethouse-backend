@@ -38,6 +38,9 @@ export class Player {
     @Property({default: false})
       isEliminated = false;
 
+    @Property({default: false})
+      secretDiscovered = false;
+
     @Enum(() => Genders)
       gender!: Genders;
 

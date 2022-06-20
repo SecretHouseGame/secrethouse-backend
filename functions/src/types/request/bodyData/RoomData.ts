@@ -3,11 +3,10 @@ export interface RoomData {
     isSecret: boolean;
 }
 
-export function castToRoomData(value:any): RoomData | null {
-  try {
-    return value as RoomData;
-  } catch (e) {
-    console.error(e);
-    return null;
-  }
+export function castToRoomData(value: any):RoomData|null {
+  const castedData = <RoomData> value;
+  return (isRoomData(castedData))? castedData : null;
+}
+function isRoomData(data:RoomData):data is RoomData {
+  return data.name != undefined && data.isSecret != undefined;
 }

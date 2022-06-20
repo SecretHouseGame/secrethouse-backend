@@ -2,57 +2,91 @@ import {Router} from "express";
 import {DelayUnities, Game, Player, Room, User} from "../bdd/entities";
 import {BddService} from "../services/BddService";
 import {authVerification} from "./commonMiddlewares/authMiddlewares";
-import {BadRequestError} from "../errors";
+import {BadRequestError, ServerSideError} from "../errors";
+import {checkId} from "./commonMiddlewares/paramMiddleware";
+import {castToGameData} from "../types/request/bodyData";
 
 const router = Router();
 
 router.post("/create", authVerification, async function(req, res, next) {
+  const gameData = castToGameData(req.body);
+  if (gameData === null) throw new BadRequestError("Invalid Game Data");
+
   // FIXME : Serialize data of user
-  const eliminationDelayUnity: DelayUnities = Game.castToDelayUnities(req.body.eliminationDelayUnity);
-  const eventIntervalUnity: DelayUnities = Game.castToDelayUnities(req.body.eventIntervalUnity);
   const user = <User> await BddService.userHandler.findUserById(req.currentUser.id);
-
-  if (user === null) {
-    throw new BadRequestError("Invalid User Data");
+  if (user === null) throw new BadRequestError("User not found");
+  let game;
+  try {
+    const eliminationDelayUnity: DelayUnities = Game.castToDelayUnities(req.body.eliminationDelayUnity);
+    const eventIntervalUnity: DelayUnities = Game.castToDelayUnities(req.body.eventIntervalUnity);
+    game = <Game> await BddService.gameHandler.createGame(gameData, user, eventIntervalUnity, eliminationDelayUnity);
+  } catch (e) {
+    console.log(e);
   }
-
-  const game = await BddService.gameHandler.createGame(req.body, user, eventIntervalUnity, eliminationDelayUnity);
-
   if (game != null) return res.status(200).send(game);
-  else throw new BadRequestError("Invalid Game Data");
+  else throw new ServerSideError();
 });
 
-router.get("/game/:id", async function(req, res, next) {
+router.get("/:id", checkId, async function(req, res, next) {
   const idGame: number = +req.params.id;
-
-  if (isNaN(idGame) || idGame === 0) {
-    throw new BadRequestError("Game id not valid");
+  let game;
+  try {
+    game = <Game> await BddService.gameHandler.findGameById(idGame);
+  } catch (e) {
+    console.log(e);
+    throw new ServerSideError();
   }
-
-  const game = <Game> await BddService.gameHandler.findGameById(idGame);
-  return res.status(200).send(game);
+  if (game !== null) return res.status(200).send(game);
+  else throw new BadRequestError("Game not found");
 });
 
-router.get("/game/:id/players", async function(req, res, next) {
+router.get("/:id/players", checkId, async function(req, res, next) {
   const idGame: number = +req.params.id;
-
-  if (isNaN(idGame) || idGame === 0) {
-    throw new BadRequestError("Game id not valid");
+  let players;
+  try {
+    players = <Player[]> await BddService.playerHandler.findPlayersByGame(idGame);
+  } catch (e) {
+    console.log(e);
+    throw new ServerSideError();
   }
-
-  const players = <Player[]> await BddService.playerHandler.findPlayerByGame(idGame);
   return res.status(200).send(players);
 });
 
-router.get("/game/:id/rooms", async function(req, res, next) {
+router.get("/:id/rooms", checkId, async function(req, res, next) {
   const idGame: number = +req.params.id;
+  let roomGames;
+  try {
+    roomGames = <Room[]> await BddService.roomGameHandler.findRoomsByGame(idGame);
+  } catch (e) {
+    console.log(e);
+  }
+  return res.status(200).send(roomGames);
+});
 
-  if (isNaN(idGame) || idGame === 0) {
-    throw new BadRequestError("Game id not valid");
+router.get("/:id/events", checkId, async function(req, res, next) {
+  const idGame: number = +req.params.id;
+  let events;
+  try {
+    events = await BddService.eventHandler.getCurrentEvents(idGame);
+    console.log(events);
+  } catch (e) {
+    console.log(e);
+    throw new ServerSideError();
   }
 
-  const roomGames = <Room[]> await BddService.roomGameHandler.findRoomsByGame(idGame);
-  return res.status(200).send(roomGames);
+  return res.status(200).send(events);
+});
+
+router.get("/:id/secrets", checkId, async function(req, res, next) {
+  const idGame: number = +req.params.id;
+  let secrets;
+  try {
+    secrets = await BddService.playerHandler.getPlayerSecrets(idGame);
+  } catch (e) {
+    console.log(e);
+    throw new ServerSideError();
+  }
+  return res.status(200).send(secrets);
 });
 
 export {router as gameController};

@@ -20,11 +20,8 @@ export class Buzz {
     @Property()
       createdAt: Date = new Date();
 
-    @Property()
+    @Property({onUpdate: () => new Date()})
       updatedAt: Date = new Date();
-
-    @Property({default: false})
-      isConfirmed = false;
 
     @Property()
       secret!: string;
@@ -32,23 +29,22 @@ export class Buzz {
     @Enum(() => BuzzStatus)
       status!: string;
 
-    constructor(buzzData: BuzzData, buzzer: Player, target: Player, event: Event, status: BuzzStatus) {
+    constructor(buzzData: BuzzData, buzzer: Player, target: Player, event: Event) {
       this.buzzer = buzzer;
       this.event = event;
       this.target = target;
-      this.isConfirmed = buzzData.isConfirmed;
       this.secret = buzzData.secret;
-      this.status = status;
+      this.status = BuzzStatus.PENDING;
     }
 
     static castToBuzzStatus(value: string): BuzzStatus {
-      let status: BuzzStatus = BuzzStatus.CREATED;
+      let status: BuzzStatus = BuzzStatus.PENDING;
       try {
         const statusKey: keyof typeof BuzzStatus = value as keyof typeof BuzzStatus;
         status = BuzzStatus[statusKey];
       } catch (e) {
         console.error(e);
-        return BuzzStatus.CREATED;
+        return BuzzStatus.PENDING;
       }
       return status;
     }
@@ -56,11 +52,9 @@ export class Buzz {
 
 
 export enum BuzzStatus{
-    "CREATED" = "created",
-    "STARTED" = "started",
+    "PENDING" = "Pending",
     "CONFIRMED" = "confirmed",
     "CORRECT" = "correct",
     "SEMI-CORRECT" = "semi-correct",
     "WRONG" = "wrong",
-    "CANCELLED" = "cancelled",
 }
