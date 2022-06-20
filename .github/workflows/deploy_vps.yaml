@@ -23,7 +23,7 @@ jobs:
             StrictHostKeyChecking no
           END
         env:
-          SSH_USER: ${{ secrets.SSH_USER }}
+          SSH_USER: ${{ secrets.USERNAME }}
           SSH_KEY: ${{ secrets.SSH_KEY }}
           SSH_HOST: ${{ secrets.HOST }}
 
