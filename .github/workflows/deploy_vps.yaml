@@ -42,4 +42,4 @@ jobs:
             echo DB_PORT=${{secrets.DB_PORT}} >> .env
             npm build
             node lib/bdd/createDb.js
-            pm2 restart 'lib/index.js'
+            pm2 restart lib/index.js'
