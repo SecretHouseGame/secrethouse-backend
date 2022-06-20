@@ -1,5 +1,13 @@
 # Changelog
 
+### [1.2.8](https://www.github.com/SecretHouseGame/secrethouse-backend/compare/v1.2.7...v1.2.8) (2022-06-20)
+
+
+### Bug Fixes
+
+* Again Mikrorm ([542059e](https://www.github.com/SecretHouseGame/secrethouse-backend/commit/542059eeeaa01d63546da2a1e7902e700e9c7ead))
+* Again Mikrorm v2 ([c6bcad6](https://www.github.com/SecretHouseGame/secrethouse-backend/commit/c6bcad6ec9843be44b81236a0bbf4788b4fa546a))
+
 ### [1.2.7](https://www.github.com/SecretHouseGame/secrethouse-backend/compare/v1.2.6...v1.2.7) (2022-06-20)
 
 
