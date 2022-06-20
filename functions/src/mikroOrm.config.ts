@@ -6,12 +6,12 @@ import * as functions from "firebase-functions";
 const options = function(): Options {
   return {
     entities: [User, Game, Room, RoomGame, Player, Event, Buzz, Nomination, Vote],
-    dbName: functions.config().envs.db_name,
-    host: functions.config().envs.db_host,
-    user: functions.config().envs.db_user,
-    password: functions.config().envs.db_password,
+    dbName: functions.config().envs["db_name"],
+    host: functions.config().envs["db_host"],
+    user: functions.config().envs["db_user"],
+    password: functions.config().envs["db_password"],
     metadataProvider: TsMorphMetadataProvider,
-    port: Number(functions.config().envs.db_port),
+    port: Number(functions.config().envs["db_port"]),
     type: "mysql",
   };
 };
