@@ -1,5 +1,12 @@
 # Changelog
 
+### [1.3.12](https://www.github.com/SecretHouseGame/secrethouse-backend/compare/v1.3.11...v1.3.12) (2022-06-20)
+
+
+### Bug Fixes
+
+* RUNN ([c4cd599](https://www.github.com/SecretHouseGame/secrethouse-backend/commit/c4cd5998f30fcc49e2ea708acb39c147b0bc6463))
+
 ### [1.3.11](https://www.github.com/SecretHouseGame/secrethouse-backend/compare/v1.3.10...v1.3.11) (2022-06-20)
 
 
