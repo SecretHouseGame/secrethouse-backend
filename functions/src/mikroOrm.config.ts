@@ -5,12 +5,12 @@ import {Options} from "@mikro-orm/core";
 const options = function(): Options {
   return {
     entities: [User, Game, Room, RoomGame, Player, Event, Buzz, Nomination, Vote],
-    dbName: process.env.DB_NAME,
-    host: process.env.DB_HOST,
-    user: process.env.DB_USER,
-    password: process.env.DB_PASSWORD,
+    dbName: process.env.db_name,
+    host: process.env.db_host,
+    user: process.env.db_user,
+    password: process.env.db_password,
     metadataProvider: TsMorphMetadataProvider,
-    port: Number(process.env.DB_PORT),
+    port: Number(process.env.db_port),
     type: "mysql",
   };
 };
