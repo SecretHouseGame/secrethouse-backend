@@ -3,11 +3,10 @@ export type EventData = {
 }
 
 export function castToEventData(value:any): EventData | null {
-
-    try {
-        return value as EventData;
-    } catch (e) {
-        console.error(e);
-        return null;
-    }
+  try {
+    return value as EventData;
+  } catch (e) {
+    console.error(e);
+    return null;
+  }
 }

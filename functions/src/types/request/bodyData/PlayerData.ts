@@ -4,10 +4,10 @@ export type PlayerData = {
 }
 
 export function castToPlayerData(value:any): PlayerData | null {
-    try {
-        return value as PlayerData;
-    } catch (e) {
-        console.error(e);
-        return null;
-    }
+  try {
+    return value as PlayerData;
+  } catch (e) {
+    console.error(e);
+    return null;
+  }
 }

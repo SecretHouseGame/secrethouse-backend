@@ -3,7 +3,7 @@ export interface LoginData {
     password: string;
 }
 
-export function castToLoginData(value: any):LoginData|null{
+export function castToLoginData(value: any):LoginData|null {
   const castedData = <LoginData> value;
   return (isLoginData(castedData))? castedData : null;
 }

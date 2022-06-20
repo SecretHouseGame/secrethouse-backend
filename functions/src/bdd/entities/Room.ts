@@ -1,19 +1,19 @@
 import {Entity, PrimaryKey, Property} from "@mikro-orm/core";
-import { RoomData } from "../../types/request/bodyData";
+import {RoomData} from "../../types/request/bodyData";
 
 @Entity()
-export class Room{
+export class Room {
     @PrimaryKey()
-    id!: number;
+      id!: number;
 
     @Property()
-    name!: string;
+      name!: string;
 
     @Property()
-    isSecret!: boolean;
+      isSecret!: boolean;
 
-    constructor(roomData: RoomData){
-        this.name = roomData.name;
-        this.isSecret = roomData.isSecret;
+    constructor(roomData: RoomData) {
+      this.name = roomData.name;
+      this.isSecret = roomData.isSecret;
     }
 }

@@ -1,56 +1,55 @@
 import {Router} from "express";
-import { Game, Player, User } from "../bdd/entities";
-import { BddService } from "../services/BddService";
+import {Game, Player, User} from "../bdd/entities";
+import {BddService} from "../services/BddService";
 import {authVerification} from "./commonMiddlewares/authMiddlewares";
 import {BadRequestError} from "../errors";
 
 const router = Router();
 
 router.post("/create", authVerification, async function(req, res, next) {
-    // FIXME : Serialize data of user 
-    const gender = Player.castToGenders(req.body.gender);
-    const user = <User> await BddService.userHandler.findUserById(req.currentUser.id);
-    
-    if(user === null){
-        throw new BadRequestError("Invalid User Data");
-    }
+  // FIXME : Serialize data of user
+  const gender = Player.castToGenders(req.body.gender);
+  const user = <User> await BddService.userHandler.findUserById(req.currentUser.id);
 
-    const game = <Game> await BddService.gameHandler.findGameById(req.body.gameId);
+  if (user === null) {
+    throw new BadRequestError("Invalid User Data");
+  }
 
-    if(game === null){
-        throw new BadRequestError("Invalid Game Data");
-    }
+  const game = <Game> await BddService.gameHandler.findGameById(req.body.gameId);
 
-    let player = await BddService.playerHandler.createPlayer(req.body, user, game, gender);
+  if (game === null) {
+    throw new BadRequestError("Invalid Game Data");
+  }
 
-    if (player != null) {
-        return res.status(200).send(player);
-    }
-    else {
-        throw new BadRequestError("Invalid Player Data");
-    }
+  const player = await BddService.playerHandler.createPlayer(req.body, user, game, gender);
+
+  if (player != null) {
+    return res.status(200).send(player);
+  } else {
+    throw new BadRequestError("Invalid Player Data");
+  }
 });
 
-router.get("/player/:id", async function (req, res, next) {
-    const idPlayer: number = +req.params.id;
+router.get("/player/:id", async function(req, res, next) {
+  const idPlayer: number = +req.params.id;
 
-    if(isNaN(idPlayer) || idPlayer === 0) {
-        throw new BadRequestError("Player id not valid");
-    }
+  if (isNaN(idPlayer) || idPlayer === 0) {
+    throw new BadRequestError("Player id not valid");
+  }
 
-    let player = <Player> await BddService.playerHandler.findPlayerById(idPlayer);
-    return res.status(200).send(player);
+  const player = <Player> await BddService.playerHandler.findPlayerById(idPlayer);
+  return res.status(200).send(player);
 });
 
-router.get("/", authVerification, async function (req,res, next) {
-    const idUser: number = req.currentUser.id;
+router.get("/", authVerification, async function(req, res, next) {
+  const idUser: number = req.currentUser.id;
 
-    if(isNaN(idUser) || idUser === 0) {
-        throw new BadRequestError("User id not valid");
-    }
+  if (isNaN(idUser) || idUser === 0) {
+    throw new BadRequestError("User id not valid");
+  }
 
-    let player = <Player> await BddService.playerHandler.findPlayerByUser(idUser);
-    return res.status(200).send(player);
+  const player = <Player> await BddService.playerHandler.findPlayerByUser(idUser);
+  return res.status(200).send(player);
 });
 
 export {router as playerController};
