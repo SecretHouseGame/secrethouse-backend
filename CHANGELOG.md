@@ -1,5 +1,12 @@
 # Changelog
 
+### [1.2.7](https://www.github.com/SecretHouseGame/secrethouse-backend/compare/v1.2.6...v1.2.7) (2022-06-20)
+
+
+### Bug Fixes
+
+* CI AGAAAAAAAAIN !!!! @#$%^ 🤯👿 ([74edb9d](https://www.github.com/SecretHouseGame/secrethouse-backend/commit/74edb9d64fe36e295baea2a3241a2241e345945a))
+
 ### [1.2.6](https://www.github.com/SecretHouseGame/secrethouse-backend/compare/v1.2.5...v1.2.6) (2022-06-20)
 
 
