@@ -3,28 +3,28 @@ import {Event} from "./Event";
 import {Player} from "./Player";
 
 @Entity()
-export class Nomination{
+export class Nomination {
     @PrimaryKey()
-    id!: number;
+      id!: number;
 
     @ManyToOne()
-    player!: Player;
+      player!: Player;
 
     @ManyToOne()
-    target!: Player;
-    
-    @Property()
-    createdAt: Date = new Date();
+      target!: Player;
 
     @Property()
-    updatedAt: Date = new Date();
+      createdAt: Date = new Date();
+
+    @Property()
+      updatedAt: Date = new Date();
 
     @ManyToOne()
-    event!: Event;
+      event!: Event;
 
-    constructor(player: Player, target: Player, event: Event){
-        this.player = player;
-        this.target = target;
-        this.event = event;
+    constructor(player: Player, target: Player, event: Event) {
+      this.player = player;
+      this.target = target;
+      this.event = event;
     }
 }

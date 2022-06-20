@@ -3,21 +3,21 @@ import {Room} from "./Room";
 import {Game} from "./Game";
 
 @Entity()
-export class RoomGame{
+export class RoomGame {
     @PrimaryKey()
-    id!: number;
+      id!: number;
 
     @ManyToOne()
-    room!: Room;
+      room!: Room;
 
     @ManyToOne()
-    game!: Game;
+      game!: Game;
 
     @Property({default: false})
-    isLocked: boolean = false;
+      isLocked = false;
 
-    constructor(room: Room, game: Game){
-        this.room = room;
-        this.game = game;
+    constructor(room: Room, game: Game) {
+      this.room = room;
+      this.game = game;
     }
 }

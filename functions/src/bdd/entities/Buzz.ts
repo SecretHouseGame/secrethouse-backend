@@ -1,56 +1,56 @@
 import {Entity, Enum, ManyToOne, PrimaryKey, Property} from "@mikro-orm/core";
-import { BuzzData } from "../../types/request/bodyData/BuzzData";
+import {BuzzData} from "../../types/request/bodyData/BuzzData";
 import {Event} from "./Event";
 import {Player} from "./Player";
 
 @Entity()
-export class Buzz{
+export class Buzz {
     @PrimaryKey()
-    id!: number;
+      id!: number;
 
     @ManyToOne()
-    buzzer!: Player;
+      buzzer!: Player;
 
     @ManyToOne()
-    event!: Event;
+      event!: Event;
 
     @ManyToOne()
-    target!: Player;
+      target!: Player;
 
     @Property()
-    createdAt: Date = new Date();
+      createdAt: Date = new Date();
 
     @Property()
-    updatedAt: Date = new Date();
+      updatedAt: Date = new Date();
 
     @Property({default: false})
-    isConfirmed: boolean = false;
+      isConfirmed = false;
 
     @Property()
-    secret!: string;
+      secret!: string;
 
     @Enum(() => BuzzStatus)
-    status!: string;
+      status!: string;
 
     constructor(buzzData: BuzzData, buzzer: Player, target: Player, event: Event, status: BuzzStatus) {
-        this.buzzer = buzzer;
-        this.event = event;
-        this.target = target;
-        this.isConfirmed = buzzData.isConfirmed;
-        this.secret = buzzData.secret;
-        this.status = status;
+      this.buzzer = buzzer;
+      this.event = event;
+      this.target = target;
+      this.isConfirmed = buzzData.isConfirmed;
+      this.secret = buzzData.secret;
+      this.status = status;
     }
 
     static castToBuzzStatus(value: string): BuzzStatus {
-        let status: BuzzStatus = BuzzStatus.CREATED;
-        try {
-            const statusKey: keyof typeof BuzzStatus = value as keyof typeof BuzzStatus;
-            status = BuzzStatus[statusKey];
-        } catch (e) {
-            console.error(e);
-            return BuzzStatus.CREATED;
-        }
-        return status;
+      let status: BuzzStatus = BuzzStatus.CREATED;
+      try {
+        const statusKey: keyof typeof BuzzStatus = value as keyof typeof BuzzStatus;
+        status = BuzzStatus[statusKey];
+      } catch (e) {
+        console.error(e);
+        return BuzzStatus.CREATED;
+      }
+      return status;
     }
 }
 

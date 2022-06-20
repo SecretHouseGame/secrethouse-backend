@@ -5,11 +5,10 @@ export type GameData = {
 }
 
 export function castToGameData(value:any): GameData | null {
-
-    try {
-        return value as GameData;
-    } catch (e) {
-        console.error(e);
-        return null;
-    }
+  try {
+    return value as GameData;
+  } catch (e) {
+    console.error(e);
+    return null;
+  }
 }

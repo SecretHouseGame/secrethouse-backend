@@ -4,28 +4,28 @@ import {Player} from "./Player";
 import {User} from "./User";
 
 @Entity()
-export class Vote{
+export class Vote {
     @PrimaryKey()
-    id!: number;
+      id!: number;
 
     @ManyToOne()
-    user!: User;
+      user!: User;
 
     @ManyToOne()
-    target!: Player;
-    
-    @Property()
-    createdAt: Date = new Date();
+      target!: Player;
 
     @Property()
-    updatedAt: Date = new Date();
+      createdAt: Date = new Date();
+
+    @Property()
+      updatedAt: Date = new Date();
 
     @ManyToOne()
-    event!: Event;
+      event!: Event;
 
-    constructor(user: User, target: Player, event: Event){
-        this.user = user;
-        this.target = target;
-        this.event = event;
+    constructor(user: User, target: Player, event: Event) {
+      this.user = user;
+      this.target = target;
+      this.event = event;
     }
 }

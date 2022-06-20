@@ -1,34 +1,33 @@
-import { EntityManager } from "@mikro-orm/knex";
-import { castToPlayerData } from "../../types/request/bodyData/PlayerData";
-import { Game, Genders, User } from "../entities";
-import { Player } from "../entities/Player";
+import {EntityManager} from "@mikro-orm/knex";
+import {castToPlayerData} from "../../types/request/bodyData/PlayerData";
+import {Game, Genders, User} from "../entities";
+import {Player} from "../entities/Player";
 import {EntityHandler} from "./EntityHandler";
 
 export class PlayerHandler extends EntityHandler {
-    constructor(entityManager: EntityManager) {
-        super(entityManager, Player);
-    }
+  constructor(entityManager: EntityManager) {
+    super(entityManager, Player);
+  }
 
-    async createPlayer(payload: any, user: User, game: Game, gender: Genders) {
+  async createPlayer(payload: any, user: User, game: Game, gender: Genders) {
+    const playerData = castToPlayerData(payload);
 
-        const playerData = castToPlayerData(payload);
+    if (playerData === null) return null;
 
-        if (playerData === null) return null;
+    const player = new Player(playerData, user, game, gender);
+    await this.repository.persistAndFlush(player);
+    return player;
+  }
 
-        const player = new Player(playerData,user, game,gender);
-        await this.repository.persistAndFlush(player);
-        return player;
-    }
+  async findPlayerById(id: number) {
+    return await this.repository.findOne({id: id});
+  }
 
-    async findPlayerById(id: number) {
-        return await this.repository.findOne({id: id});
-    }
+  async findPlayerByUser(id: number) {
+    return await this.repository.findOne({user: id});
+  }
 
-    async findPlayerByUser(id: number) {
-        return await this.repository.findOne({user: id});
-    }
-
-    async findPlayerByGame(id: number) {
-        return await this.repository.find({game: id});
-    }
+  async findPlayerByGame(id: number) {
+    return await this.repository.find({game: id});
+  }
 }
