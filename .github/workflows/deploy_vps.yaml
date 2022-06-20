@@ -28,4 +28,4 @@ jobs:
           SSH_HOST: ${{ secrets.HOST }}
 
       - name: Check out the source
-        run: ssh staging -p ${{ secrets.PORT }} 'cp /var/www/env/.env-sh-api /var/www/sh-api/functions/ && cd /var/www/sh-api/ && git fetch  && git reset --hard origin/main && cd functions && npm install && npm build && node lib/bdd/createDb.js && pm2 restart lib/index.js'
+        run: ssh staging -p ${{ secrets.PORT }} 'cp /var/www/env/.env-sh-api /var/www/sh-api/functions/ && cd /var/www/sh-api/ && git fetch  && git reset --hard origin/main && cd functions && npm install && npm run build && node lib/bdd/createDb.js && pm2 restart lib/index.js'
