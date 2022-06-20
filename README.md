@@ -44,3 +44,5 @@ Pour release une feature ou un fix :
 - Merge dans `main`
 - Une nouvelle PR pour la release est créé qui devra être approved et merge également pour déclencher le :
   - Le CI automatisera la release + déploiement sur firebase.
+
+f

@@ -25,5 +25,7 @@ jobs:
         working-directory: ${{env.working-directory}}
       - name: install firebase
         run: npm i firebase-tools -g
+      - name: config env
+        run: firebase functions:config:set envs.db_host=${{ secrets.DB_HOST }} envs.db_password=${{ secrets.DB_PASS }} envs.db_user=${{ secrets.DB_USERNAME }} envs.db_port=${{ secrets.DB_PORT }} envs.db_name=${{ secrets.DB_NAME }} --token ${{ secrets.FIREBASE_TOKEN }}
       - name: deploy
         run: firebase deploy --token ${{ secrets.FIREBASE_TOKEN }}
