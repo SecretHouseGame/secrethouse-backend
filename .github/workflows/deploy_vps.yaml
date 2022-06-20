@@ -28,4 +28,18 @@ jobs:
           SSH_HOST: ${{ secrets.HOST }}
 
       - name: Check out the source
-        run: ssh staging -p ${{ secrets.PORT }} 'cd /var/www/secrethouse-api/ && git fetch && git reset --hard origin/main && cd functions && npm install && touch .env && DB_HOST=${{DB_HOST}} >> .env && DB_NAME=${{DB_NAME}} >> .env && DB_USER=${{DB_USERNAME}} >> .env && DB_PASSWORD=${{DB_PASSWORD}} >> .env && DB_PORT=${{DB_PORT}} >> .env && npm build && node lib/bdd/createDb.js && pm2 restart lib/index.js'
+        run: |
+            ssh staging -p ${{ secrets.PORT }} 'cd /var/www/secrethouse-api/ 
+            git fetch 
+            git reset --hard origin/main
+            cd functions
+            npm install
+            touch .env
+            echo DB_HOST=${{DB_HOST}} >> .env
+            echo DB_NAME=${{DB_NAME}} >> .env
+            echo DB_USER=${{DB_USERNAME}} >> .env
+            echo DB_PASSWORD=${{DB_PASSWORD}} >> .env
+            echo DB_PORT=${{DB_PORT}} >> .env
+            npm build
+            node lib/bdd/createDb.js
+            pm2 restart 'lib/index.js'
