@@ -4,21 +4,21 @@ import {EntityManager} from "@mikro-orm/mysql";
 import {castToEventData} from "../../types/request/bodyData";
 
 export class EventHandler extends EntityHandler {
-    constructor(entityManager: EntityManager) {
-        super(entityManager, Event);
-    }
+  constructor(entityManager: EntityManager) {
+    super(entityManager, Event);
+  }
 
-    async createEvent(payload: any, player: Player, user: User, game: Game, eventType: EventTypes, eventStatus: EventStatus) {
-        const eventData = castToEventData(payload);
-        
-        if (eventData === null) return null;
+  async createEvent(payload: any, player: Player, user: User, game: Game, eventType: EventTypes, eventStatus: EventStatus) {
+    const eventData = castToEventData(payload);
 
-        const event = new Event(eventData, player, user, game, eventType, eventStatus);
-        await this.repository.persistAndFlush(event);
-        return event;
-    }
+    if (eventData === null) return null;
 
-    async findEventById(id: number) {
-        return await this.repository.findOne({id: id});
-    }
+    const event = new Event(eventData, player, user, game, eventType, eventStatus);
+    await this.repository.persistAndFlush(event);
+    return event;
+  }
+
+  async findEventById(id: number) {
+    return await this.repository.findOne({id: id});
+  }
 }

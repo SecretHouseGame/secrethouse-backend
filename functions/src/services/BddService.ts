@@ -27,11 +27,11 @@ export class BddService {
     }
     return this.game;
   }
-  
+
   static get playerHandler(): PlayerHandler {
     if (this.player == null) {
       this.player = new PlayerHandler(this.entityManager);
-    } 
+    }
     return this.player;
   }
 
@@ -45,7 +45,7 @@ export class BddService {
   static get roomHandler(): RoomHandler {
     if (this.room == null) {
       this.room = new RoomHandler(this.entityManager);
-    } 
+    }
     return this.room;
   }
 
@@ -66,7 +66,7 @@ export class BddService {
   static get buzzHandler(): BuzzHandler {
     if (this.buzz == null) {
       this.buzz = new BuzzHandler(this.entityManager);
-    } 
+    }
     return this.buzz;
   }
 

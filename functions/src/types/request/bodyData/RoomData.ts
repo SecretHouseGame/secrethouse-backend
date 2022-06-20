@@ -4,11 +4,10 @@ export interface RoomData {
 }
 
 export function castToRoomData(value:any): RoomData | null {
-
-    try {
-        return value as RoomData;
-    } catch (e) {
-        console.error(e);
-        return null;
-    }
+  try {
+    return value as RoomData;
+  } catch (e) {
+    console.error(e);
+    return null;
+  }
 }
