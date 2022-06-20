@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.3.0](https://www.github.com/SecretHouseGame/secrethouse-backend/compare/v1.2.8...v1.3.0) (2022-06-20)
+
+
+### Features
+
+* add ci to deploy on VPS ([23edb7b](https://www.github.com/SecretHouseGame/secrethouse-backend/commit/23edb7b004a58170b77e757766863d4da7e29514))
+
 ### [1.2.8](https://www.github.com/SecretHouseGame/secrethouse-backend/compare/v1.2.7...v1.2.8) (2022-06-20)
 
 
