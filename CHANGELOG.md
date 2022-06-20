@@ -1,5 +1,13 @@
 # Changelog
 
+### [1.3.4](https://www.github.com/SecretHouseGame/secrethouse-backend/compare/v1.3.3...v1.3.4) (2022-06-20)
+
+
+### Bug Fixes
+
+* :butterfly: remove useless import ([d05edd3](https://www.github.com/SecretHouseGame/secrethouse-backend/commit/d05edd37768477dd5b764349cbb32e0045482f4f))
+* $#%@#$%#Y%$^#%#$@YU# ([ae9ec21](https://www.github.com/SecretHouseGame/secrethouse-backend/commit/ae9ec21c21fff7291c32e7188b19787cd39f8d5e))
+
 ### [1.3.3](https://www.github.com/SecretHouseGame/secrethouse-backend/compare/v1.3.2...v1.3.3) (2022-06-20)
 
 
