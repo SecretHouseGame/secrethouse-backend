@@ -1,5 +1,12 @@
 # Changelog
 
+### [1.2.1](https://www.github.com/SecretHouseGame/secrethouse-backend/compare/v1.2.0...v1.2.1) (2022-06-20)
+
+
+### Bug Fixes
+
+* :butterfly: firebase sites to site ([72018b3](https://www.github.com/SecretHouseGame/secrethouse-backend/commit/72018b376edaa75b12e0872b39a8b8a1efd0287a))
+
 ## [1.2.0](https://www.github.com/SecretHouseGame/secrethouse-backend/compare/v1.1.0...v1.2.0) (2022-06-20)
 
 
