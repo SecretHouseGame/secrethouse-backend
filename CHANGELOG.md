@@ -1,5 +1,12 @@
 # Changelog
 
+### [1.2.5](https://www.github.com/SecretHouseGame/secrethouse-backend/compare/v1.2.4...v1.2.5) (2022-06-20)
+
+
+### Bug Fixes
+
+* :butterfly: Ci Again Again Again V3 ([9521b75](https://www.github.com/SecretHouseGame/secrethouse-backend/commit/9521b75b1faa912cf76618520278f9a267de2094))
+
 ### [1.2.4](https://www.github.com/SecretHouseGame/secrethouse-backend/compare/v1.2.3...v1.2.4) (2022-06-20)
 
 
