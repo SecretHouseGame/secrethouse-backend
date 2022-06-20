@@ -4,9 +4,10 @@ import {Options} from "@mikro-orm/core";
 
 const options = function(): Options {
   const functions = require('firebase-functions');
-  const config = functions.config();
-  for(const key in config.envs){
-    process.env[key.toUpperCase()] = config.envs[key];
+  for (const key in config.envs) {
+    if (key != " ") {
+      process.env[key.toUpperCase()] = config.envs[key];
+    }
   }
   return {
     entities: [User, Game, Room, RoomGame, Player, Event, Buzz, Nomination, Vote],
