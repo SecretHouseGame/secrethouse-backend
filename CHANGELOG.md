@@ -1,5 +1,13 @@
 # Changelog
 
+### [1.3.3](https://www.github.com/SecretHouseGame/secrethouse-backend/compare/v1.3.2...v1.3.3) (2022-06-20)
+
+
+### Bug Fixes
+
+* :butterfly: revert mikrOrm config ([623851d](https://www.github.com/SecretHouseGame/secrethouse-backend/commit/623851d835f6bdcc0247ef389a81e5193b4462f3))
+* 😤@%$#@$# ([dc2a124](https://www.github.com/SecretHouseGame/secrethouse-backend/commit/dc2a124bc36d51f2539cd9173d941a6ba1d247fe))
+
 ### [1.3.2](https://www.github.com/SecretHouseGame/secrethouse-backend/compare/v1.3.1...v1.3.2) (2022-06-20)
 
 
