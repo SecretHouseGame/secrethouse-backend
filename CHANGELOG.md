@@ -1,5 +1,12 @@
 # Changelog
 
+### [1.3.13](https://www.github.com/SecretHouseGame/secrethouse-backend/compare/v1.3.12...v1.3.13) (2022-06-20)
+
+
+### Bug Fixes
+
+* Test firebase ([c5c7613](https://www.github.com/SecretHouseGame/secrethouse-backend/commit/c5c761322ca94361327d81336eaf2d5a1f3b8271))
+
 ### [1.3.12](https://www.github.com/SecretHouseGame/secrethouse-backend/compare/v1.3.11...v1.3.12) (2022-06-20)
 
 
