@@ -32,6 +32,7 @@ export class PlayerHandler extends EntityHandler {
           strategy: LoadStrategy.JOINED,
         },
     );
+    
   }
 
   async findPlayerByGame(id: number) {
