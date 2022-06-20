@@ -1,5 +1,12 @@
 # Changelog
 
+### [1.3.15](https://www.github.com/SecretHouseGame/secrethouse-backend/compare/v1.3.14...v1.3.15) (2022-06-20)
+
+
+### Bug Fixes
+
+* Again and again ([e0eabd0](https://www.github.com/SecretHouseGame/secrethouse-backend/commit/e0eabd0fcd9af6c9bca1d96a9722e30366a0667e))
+
 ### [1.3.14](https://www.github.com/SecretHouseGame/secrethouse-backend/compare/v1.3.13...v1.3.14) (2022-06-20)
 
 
