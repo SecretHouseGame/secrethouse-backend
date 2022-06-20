@@ -24,17 +24,17 @@ export class PlayerHandler extends EntityHandler {
     return await this.repository.findOne({id: id});
   }
 
-    async findPlayerByUser(id: number) {
-        return await this.repository.findOne(
-            {user: id, game: { endDate: {$eq: null} } },
-            {
-                populate: ['game'],
-                strategy: LoadStrategy.JOINED,
-            },
-        );
-    }
+  async findPlayerByUser(id: number) {
+    return await this.repository.findOne(
+        {user: id, game: {endDate: {$eq: null}}},
+        {
+          populate: ["game"],
+          strategy: LoadStrategy.JOINED,
+        },
+    );
+  }
 
-    async findPlayerByGame(id: number) {
-        return await this.repository.find({game: id});
-    }
+  async findPlayerByGame(id: number) {
+    return await this.repository.find({game: id});
+  }
 }
