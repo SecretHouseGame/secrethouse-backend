@@ -1,6 +1,7 @@
 import {Buzz, Event, Game, Nomination, Player, Room, RoomGame, User, Vote} from "./bdd/entities";
 import {TsMorphMetadataProvider} from "@mikro-orm/reflection";
 import {Options} from "@mikro-orm/core";
+import * as functions from "firebase-functions";
 
 const options = function(): Options {
   return {

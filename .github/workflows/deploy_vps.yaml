@@ -1,0 +1,45 @@
+name: 🏁 2 - Deploy
+
+# Run this workflow every time a new commit pushed to your repository
+on:
+  release:
+    types: # This configuration does not affect the page_build event above
+      - published
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    environment: production-vps
+    steps:
+      - name: Configure SSH
+        run: |
+          mkdir -p ~/.ssh/
+          echo "$SSH_KEY" > ~/.ssh/staging.key
+          chmod 600 ~/.ssh/staging.key
+          cat >>~/.ssh/config <<END
+          Host staging
+            HostName $SSH_HOST
+            User $SSH_USER
+            IdentityFile ~/.ssh/staging.key
+            StrictHostKeyChecking no
+          END
+        env:
+          SSH_USER: ${{ secrets.SSH_USER }}
+          SSH_KEY: ${{ secrets.SSH_KEY }}
+          SSH_HOST: ${{ secrets.HOST }}
+
+      - name: Check out the source
+        run: |
+            ssh staging -p ${{ secrets.PORT }} 'cd /var/www/secrethouse-api/ 
+            git fetch 
+            git reset --hard origin/main
+            cd functions
+            npm install
+            touch .env
+            echo DB_HOST=${{DB_HOST}} >> .env
+            echo DB_NAME=${{DB_NAME}} >> .env
+            echo DB_USER=${{DB_USERNAME}} >> .env
+            echo DB_PASSWORD=${{DB_PASSWORD}} >> .env
+            echo DB_PORT=${{DB_PORT}} >> .env
+            npm build
+            node lib/bdd/createDb.js
+            pm2 restart 'lib/index.js'

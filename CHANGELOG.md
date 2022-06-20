@@ -1,5 +1,34 @@
 # Changelog
 
+### [1.3.2](https://www.github.com/SecretHouseGame/secrethouse-backend/compare/v1.3.1...v1.3.2) (2022-06-20)
+
+
+### Bug Fixes
+
+* ci ([b564d72](https://www.github.com/SecretHouseGame/secrethouse-backend/commit/b564d72105731dd0316f3f4b672877f3cd0df214))
+
+### [1.3.1](https://www.github.com/SecretHouseGame/secrethouse-backend/compare/v1.3.0...v1.3.1) (2022-06-20)
+
+
+### Bug Fixes
+
+* ci ([2033a68](https://www.github.com/SecretHouseGame/secrethouse-backend/commit/2033a686073381c4a9d3cf8c279f0e23930059d8))
+
+## [1.3.0](https://www.github.com/SecretHouseGame/secrethouse-backend/compare/v1.2.8...v1.3.0) (2022-06-20)
+
+
+### Features
+
+* add ci to deploy on VPS ([23edb7b](https://www.github.com/SecretHouseGame/secrethouse-backend/commit/23edb7b004a58170b77e757766863d4da7e29514))
+
+### [1.2.8](https://www.github.com/SecretHouseGame/secrethouse-backend/compare/v1.2.7...v1.2.8) (2022-06-20)
+
+
+### Bug Fixes
+
+* Again Mikrorm ([542059e](https://www.github.com/SecretHouseGame/secrethouse-backend/commit/542059eeeaa01d63546da2a1e7902e700e9c7ead))
+* Again Mikrorm v2 ([c6bcad6](https://www.github.com/SecretHouseGame/secrethouse-backend/commit/c6bcad6ec9843be44b81236a0bbf4788b4fa546a))
+
 ### [1.2.7](https://www.github.com/SecretHouseGame/secrethouse-backend/compare/v1.2.6...v1.2.7) (2022-06-20)
 
 
