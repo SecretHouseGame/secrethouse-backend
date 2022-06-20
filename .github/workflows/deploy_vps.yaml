@@ -29,17 +29,12 @@ jobs:
 
       - name: Check out the source
         run: |
-            ssh staging -p ${{ secrets.PORT }} 'cd /var/www/sh-api/
+            ssh staging -p ${{ secrets.PORT }} 'cp /var/www/env/.env-sh-api /var/www/sh-api/functions/
+            cd /var/www/sh-api/
             git fetch 
             git reset --hard origin/main
             cd functions
             npm install
-            touch .env
-            echo DB_HOST=${{secrets.DB_HOST}} >> .env
-            echo DB_NAME=${{secrets.DB_NAME}} >> .env
-            echo DB_USER=${{secrets.DB_USERNAME}} >> .env
-            echo DB_PASSWORD=${{secrets.DB_PASS}} >> .env
-            echo DB_PORT=${{secrets.DB_PORT}} >> .env
             npm build
             node lib/bdd/createDb.js
             pm2 restart lib/index.js'
