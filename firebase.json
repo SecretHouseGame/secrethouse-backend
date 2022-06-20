@@ -1,6 +1,6 @@
 {
   "hosting": {
-    "sites": "secrethouse-api",
+    "site": "secrethouse-api",
     "public": "functions/lib",
     "ignore": [
       "firebase.json",
