@@ -1,22 +1,16 @@
 import {EntityHandler} from "./EntityHandler";
-import {Buzz, BuzzStatus, Event, Player} from "../entities";
+import {Buzz, Event, Player} from "../entities";
 import {EntityManager} from "@mikro-orm/mysql";
-import {wrap} from "@mikro-orm/core";
-import {castToBuzzData} from "../../types/request/bodyData";
+import {LoadStrategy, wrap} from "@mikro-orm/core";
+import {BuzzData} from "../../types/request/bodyData";
 
 export class BuzzHandler extends EntityHandler {
   constructor(entityManager: EntityManager) {
     super(entityManager, Buzz);
   }
 
-  async createBuzz(payload: any, buzzer: Player, target: Player, event: Event, status: BuzzStatus) {
-    const buzzData = castToBuzzData(payload);
-
-    if (buzzData === null) {
-      return null;
-    }
-
-    const buzz = new Buzz(buzzData, buzzer, target, event, status);
+  async createBuzz(payload: BuzzData, buzzer: Player, target: Player, event: Event) {
+    const buzz = new Buzz(payload, buzzer, target, event);
 
     await this.repository.persistAndFlush(buzz);
     return buzz;
@@ -27,7 +21,10 @@ export class BuzzHandler extends EntityHandler {
   }
 
   async update(payload: any, id: number) {
-    const buzz = await this.repository.findOne({id: id});
+    const buzz = await this.repository.findOne({id: id}, {
+      populate: ["target"],
+      strategy: LoadStrategy.JOINED,
+    });
 
     if (!buzz) {
       return null;

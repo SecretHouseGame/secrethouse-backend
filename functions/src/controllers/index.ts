@@ -1,13 +1,12 @@
 import {Router} from "express";
-import {authController} from "./authController";
 import {gameController} from "./gameController";
 import {playerController} from "./playerController";
 import {roomController} from "./roomController";
-import {eventController} from "./eventController";
-import {buzzController} from "./buzzController";
 import {roomGameController} from "./roomGameController";
 import {errorHandler} from "./commonMiddlewares/errorMiddleware";
 import {NotFoundError} from "../errors";
+import {eventController} from "./eventControllers";
+import {authController} from "./authController";
 
 const router = Router();
 
@@ -17,7 +16,6 @@ router.use("/games", gameController);
 router.use("/players", playerController);
 router.use("/events", eventController);
 router.use("/rooms", roomController);
-router.use("/buzzs", buzzController);
 router.use("/gameRoom", roomGameController);
 router.use("*", (req, res, next) => {
   throw new NotFoundError();

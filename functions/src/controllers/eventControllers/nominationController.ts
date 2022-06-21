@@ -1,8 +1,9 @@
 import {Router} from "express";
-import {Event, Nomination, Player} from "../bdd/entities";
-import {BadRequestError} from "../errors";
-import {BddService} from "../services/BddService";
-import {authVerification} from "./commonMiddlewares/authMiddlewares";
+import {Event, Nomination, Player} from "../../bdd/entities";
+import {BadRequestError} from "../../errors";
+import {BddService} from "../../services/BddService";
+import {authVerification} from "../commonMiddlewares/authMiddlewares";
+import {checkId} from "../commonMiddlewares/paramMiddleware";
 
 const router = Router();
 
@@ -29,12 +30,8 @@ router.post("/create", authVerification, async function(req, res, next) {
   }
 });
 
-router.get("/nomination/:id", async function(req, res, next) {
+router.get("/nomination/:id", checkId, async function(req, res, next) {
   const idNomination: number = +req.params.id;
-
-  if (isNaN(idNomination) || idNomination === 0) {
-    throw new BadRequestError("Nomination id not valid");
-  }
 
   const nomination = <Nomination> await BddService.nominationHandler.findNominationById(idNomination);
   return res.status(200).send(nomination);

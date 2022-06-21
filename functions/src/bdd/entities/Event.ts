@@ -12,7 +12,7 @@ export class Event {
     @Property()
       createdAt: Date = new Date();
 
-    @Property()
+    @Property({onUpdate: () => new Date()})
       updatedAt: Date = new Date();
 
     @Property()
@@ -33,13 +33,13 @@ export class Event {
     @Enum(() => EventStatus)
       status!: string;
 
-    constructor(eventData: EventData, player: Player, user: User, game: Game, eventType: EventTypes, eventStatus: EventStatus) {
+    constructor(eventData: EventData, player: Player, user: User, game: Game, eventType: EventTypes) {
       this.content = eventData.content;
       this.player = player;
       this.user = user;
       this.game = game;
       this.type = eventType;
-      this.status = eventStatus;
+      this.status = EventStatus.STARTED;
     }
 
     // @FIXME : Si la requête ne contient pas ces types, ça renvoie une erreur vide de sens et ne remplit pas type/status
