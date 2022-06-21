@@ -1,5 +1,13 @@
 # Changelog
 
+### [1.3.17](https://www.github.com/SecretHouseGame/secrethouse-backend/compare/v1.3.16...v1.3.17) (2022-06-21)
+
+
+### Bug Fixes
+
+* port from 3001 to 3000 (to firebase) ([30e19d5](https://www.github.com/SecretHouseGame/secrethouse-backend/commit/30e19d586b18d940621b701b170b20da27194263))
+* test env for firebase ([bddcd4a](https://www.github.com/SecretHouseGame/secrethouse-backend/commit/bddcd4aecee26885445d449b711a94027a119306))
+
 ### [1.3.16](https://www.github.com/SecretHouseGame/secrethouse-backend/compare/v1.3.15...v1.3.16) (2022-06-21)
 
 
