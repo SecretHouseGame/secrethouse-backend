@@ -1,5 +1,16 @@
 # Changelog
 
+### [1.3.16](https://www.github.com/SecretHouseGame/secrethouse-backend/compare/v1.3.15...v1.3.16) (2022-06-21)
+
+
+### Bug Fixes
+
+* ci deploy to VPS ([3b90df3](https://www.github.com/SecretHouseGame/secrethouse-backend/commit/3b90df36a2aa37c268e0d4eb56775260eb5d6085))
+* index.ts error ([30c2fc4](https://www.github.com/SecretHouseGame/secrethouse-backend/commit/30c2fc4b4d018e2ad19fe2a2213f7011ae263f69))
+* port from 3000 to 3001 ([542b89c](https://www.github.com/SecretHouseGame/secrethouse-backend/commit/542b89cecff4ea10da7cc45ebb25536f79d81cc8))
+* skip releasee vps ([46474f8](https://www.github.com/SecretHouseGame/secrethouse-backend/commit/46474f895ce1082f34d78c6c50f8f5b9f90175a1))
+* variable environment ([524bb7d](https://www.github.com/SecretHouseGame/secrethouse-backend/commit/524bb7df9bd10a60f4989c8bfaffd9256b30bd47))
+
 ### [1.3.15](https://www.github.com/SecretHouseGame/secrethouse-backend/compare/v1.3.14...v1.3.15) (2022-06-20)
 
 
