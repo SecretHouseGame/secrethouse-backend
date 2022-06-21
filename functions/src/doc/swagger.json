@@ -75,13 +75,13 @@
         ],
         "responses": {
           "200": {
-            "description": "successful operation",
+            "description": "Ok",
             "schema": {
               "$ref": "#/definitions/Token"
             }
           },
-          "405": {
-            "description": "Invalid User Data"
+          "401": {
+            "description": "Unauthorized"
           }
         }
       }
@@ -118,7 +118,7 @@
         ],
         "responses": {
           "200": {
-            "description": "successful operation",
+            "description": "Ok",
             "schema": {
               "$ref": "#/definitions/Token"
             },
@@ -136,7 +136,7 @@
             }
           },
           "400": {
-            "description": "Invalid username/password supplied"
+            "description": "Bad request"
           }
         }
       }
@@ -164,14 +164,20 @@
           }
         ],
         "responses": {
-          "200": {
-            "description": "successful operation",
+          "201": {
+            "description": "Created",
             "schema": {
               "$ref": "#/definitions/Game"
             }
           },
           "400": {
-            "description": "Invalid Game"
+            "description": "Bad Request"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "500": {
+            "description": "Internal server error"
           }
         }
       }
@@ -199,16 +205,22 @@
         ],
         "responses": {
           "200": {
-            "description": "successful operation",
+            "description": "Ok",
             "schema": {
-              "$ref": "#/definitions/Game"
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Game"
+              }
             }
           },
           "400": {
-            "description": "Invalid ID supplied"
+            "description": "Bad request"
           },
           "404": {
-            "description": "Player not found"
+            "description": "Not found"
+          },
+          "500": {
+            "description": "Internal server error"
           }
         }
       }
@@ -236,7 +248,7 @@
         ],
         "responses": {
           "200": {
-            "description": "successful operation",
+            "description": "Ok",
             "schema": {
               "type": "array",
               "items": {
@@ -245,10 +257,13 @@
             }
           },
           "400": {
-            "description": "Invalid ID supplied"
+            "description": "Bad request"
           },
           "404": {
-            "description": "Game not found"
+            "description": "Not found"
+          },
+          "500": {
+            "description": "Internal server error"
           }
         }
       }
@@ -276,7 +291,7 @@
         ],
         "responses": {
           "200": {
-            "description": "successful operation",
+            "description": "Ok",
             "schema": {
               "type": "array",
               "items": {
@@ -285,10 +300,13 @@
             }
           },
           "400": {
-            "description": "Invalid ID supplied"
+            "description": "Bad request"
           },
           "404": {
-            "description": "Game not found"
+            "description": "Not found"
+          },
+          "500": {
+            "description": "Internal server error"
           }
         }
       }
@@ -316,7 +334,7 @@
         ],
         "responses": {
           "200": {
-            "description": "successful operation",
+            "description": "Ok",
             "schema": {
               "type": "array",
               "items": {
@@ -325,10 +343,13 @@
             }
           },
           "400": {
-            "description": "Invalid ID supplied"
+            "description": "Bad request"
           },
           "404": {
-            "description": "Game not found"
+            "description": "Not found"
+          },
+          "500": {
+            "description": "Internal server error"
           }
         }
       }
@@ -356,7 +377,7 @@
         ],
         "responses": {
           "200": {
-            "description": "successful operation",
+            "description": "Ok",
             "schema": {
               "type": "array",
               "items": {
@@ -365,10 +386,13 @@
             }
           },
           "400": {
-            "description": "Invalid ID supplied"
+            "description": "Bad request"
           },
           "404": {
-            "description": "Game not found"
+            "description": "Not found"
+          },
+          "500": {
+            "description": "Internal server error"
           }
         }
       }
@@ -396,14 +420,20 @@
           }
         ],
         "responses": {
-          "200": {
-            "description": "successful operation",
+          "201": {
+            "description": "Created",
             "schema": {
               "$ref": "#/definitions/Player"
             }
           },
           "400": {
-            "description": "Invalid Player"
+            "description": "Bad Request"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "500": {
+            "description": "Internal server error"
           }
         }
       }
@@ -431,16 +461,22 @@
         ],
         "responses": {
           "200": {
-            "description": "successful operation",
+            "description": "Ok",
             "schema": {
-              "$ref": "#/definitions/Player"
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Player"
+              }
             }
           },
           "400": {
-            "description": "Invalid ID supplied"
+            "description": "Bad request"
           },
           "404": {
-            "description": "Player not found"
+            "description": "Not found"
+          },
+          "500": {
+            "description": "Internal server error"
           }
         }
       }
@@ -458,7 +494,7 @@
         ],
         "responses": {
           "200": {
-            "description": "successful operation",
+            "description": "Ok",
             "schema": {
               "type": "array",
               "items": {
@@ -467,7 +503,13 @@
             }
           },
           "400": {
-            "description": "Invalid value"
+            "description": "Bad request"
+          },
+          "404": {
+            "description": "Not found"
+          },
+          "500": {
+            "description": "Internal server error"
           }
         }
       }
@@ -495,14 +537,20 @@
           }
         ],
         "responses": {
-          "200": {
-            "description": "successful operation",
+          "201": {
+            "description": "Created",
             "schema": {
               "$ref": "#/definitions/Room"
             }
           },
           "400": {
-            "description": "Invalid Room"
+            "description": "Bad Request"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "500": {
+            "description": "Internal server error"
           }
         }
       }
@@ -520,7 +568,7 @@
         ],
         "responses": {
           "200": {
-            "description": "successful operation",
+            "description": "Ok",
             "schema": {
               "type": "array",
               "items": {
@@ -529,7 +577,13 @@
             }
           },
           "400": {
-            "description": "Invalid value"
+            "description": "Bad request"
+          },
+          "404": {
+            "description": "Not found"
+          },
+          "500": {
+            "description": "Internal server error"
           }
         }
       }
@@ -557,16 +611,22 @@
         ],
         "responses": {
           "200": {
-            "description": "successful operation",
+            "description": "Ok",
             "schema": {
-              "$ref": "#/definitions/Room"
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Room"
+              }
             }
           },
           "400": {
-            "description": "Invalid ID supplied"
+            "description": "Bad request"
           },
           "404": {
-            "description": "Room not found"
+            "description": "Not found"
+          },
+          "500": {
+            "description": "Internal server error"
           }
         }
       }
@@ -594,14 +654,20 @@
           }
         ],
         "responses": {
-          "200": {
-            "description": "successful operation",
+          "201": {
+            "description": "Created",
             "schema": {
               "$ref": "#/definitions/RoomGame"
             }
           },
           "400": {
-            "description": "Invalid Room Game"
+            "description": "Bad Request"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "500": {
+            "description": "Internal server error"
           }
         }
       }
@@ -629,14 +695,20 @@
           }
         ],
         "responses": {
-          "200": {
-            "description": "successful operation",
+          "201": {
+            "description": "Created",
             "schema": {
               "$ref": "#/definitions/Event"
             }
           },
           "400": {
-            "description": "Invalid event"
+            "description": "Bad Request"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "500": {
+            "description": "Internal server error"
           }
         }
       }
@@ -664,16 +736,22 @@
         ],
         "responses": {
           "200": {
-            "description": "successful operation",
+            "description": "Ok",
             "schema": {
-              "$ref": "#/definitions/Event"
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Event"
+              }
             }
           },
           "400": {
-            "description": "Invalid ID supplied"
+            "description": "Bad request"
           },
           "404": {
-            "description": "Event not found"
+            "description": "Not found"
+          },
+          "500": {
+            "description": "Internal server error"
           }
         }
       }
@@ -701,14 +779,20 @@
           }
         ],
         "responses": {
-          "200": {
-            "description": "successful operation",
+          "201": {
+            "description": "Created",
             "schema": {
               "$ref": "#/definitions/Buzz"
             }
           },
           "400": {
-            "description": "Invalid buzz"
+            "description": "Bad Request"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "500": {
+            "description": "Internal server error"
           }
         }
       }
@@ -736,16 +820,22 @@
         ],
         "responses": {
           "200": {
-            "description": "successful operation",
+            "description": "Ok",
             "schema": {
-              "$ref": "#/definitions/Buzz"
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Buzz"
+              }
             }
           },
           "400": {
-            "description": "Invalid ID supplied"
+            "description": "Bad request"
           },
           "404": {
-            "description": "Buzz not found"
+            "description": "Not found"
+          },
+          "500": {
+            "description": "Internal server error"
           }
         }
       },
@@ -773,14 +863,20 @@
           }
         ],
         "responses": {
+          "200": {
+            "description": "Ok",
+            "schema": {
+              "$ref": "#/definitions/Buzz"
+            }
+          },
           "400": {
-            "description": "Invalid ID supplied"
+            "description": "Bad Request"
           },
-          "404": {
-            "description": "Buzz not found"
+          "401": {
+            "description": "Unauthorized"
           },
-          "405": {
-            "description": "Validation exception"
+          "500": {
+            "description": "Internal server error"
           }
         }
       }
@@ -808,14 +904,20 @@
           }
         ],
         "responses": {
-          "200": {
-            "description": "successful operation",
+          "201": {
+            "description": "Created",
             "schema": {
               "$ref": "#/definitions/Vote"
             }
           },
           "400": {
-            "description": "Invalid vote"
+            "description": "Bad Request"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "500": {
+            "description": "Internal server error"
           }
         }
       }
@@ -843,16 +945,22 @@
         ],
         "responses": {
           "200": {
-            "description": "successful operation",
+            "description": "Ok",
             "schema": {
-              "$ref": "#/definitions/Vote"
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Vote"
+              }
             }
           },
           "400": {
-            "description": "Invalid ID supplied"
+            "description": "Bad request"
           },
           "404": {
-            "description": "Vote not found"
+            "description": "Not found"
+          },
+          "500": {
+            "description": "Internal server error"
           }
         }
       }
@@ -880,14 +988,20 @@
           }
         ],
         "responses": {
-          "200": {
-            "description": "successful operation",
+          "201": {
+            "description": "Created",
             "schema": {
               "$ref": "#/definitions/Nomination"
             }
           },
           "400": {
-            "description": "Invalid nomination"
+            "description": "Bad Request"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "500": {
+            "description": "Internal server error"
           }
         }
       }
@@ -915,16 +1029,22 @@
         ],
         "responses": {
           "200": {
-            "description": "successful operation",
+            "description": "Ok",
             "schema": {
-              "$ref": "#/definitions/Nomination"
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Nomination"
+              }
             }
           },
           "400": {
-            "description": "Invalid ID supplied"
+            "description": "Bad request"
           },
           "404": {
-            "description": "Nomination not found"
+            "description": "Not found"
+          },
+          "500": {
+            "description": "Internal server error"
           }
         }
       }
