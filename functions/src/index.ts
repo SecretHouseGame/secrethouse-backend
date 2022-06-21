@@ -17,7 +17,7 @@ app.use(async (req, res, next) =>{
     await BddService.createOrm();
   } catch (e) {
     console.log(e);
-    throw new ServerSideError();
+    throw new ServerSideError(e.message);
   }
   RequestContext.create(BddService.entityManager, next);
 });
