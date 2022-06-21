@@ -22,8 +22,8 @@ app.use(async (req, res, next) =>{
   RequestContext.create(BddService.entityManager, next);
 });
 app.use(controllers);
-app.listen(3000, () => {
-  console.log(`Example app listening on port ${3000}`);
+app.listen(3001, () => {
+  console.log(`Example app listening on port ${3001}`);
 });
 /* const cors = require('cors')({origin: true});
 app.use(cors);*/
