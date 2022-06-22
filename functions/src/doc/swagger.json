@@ -69,7 +69,7 @@
             "description": "Created user object",
             "required": true,
             "schema": {
-              "$ref": "#/definitions/UserData"
+              "$ref": "#/definitions/User"
             }
           }
         ],
@@ -102,18 +102,13 @@
         ],
         "parameters": [
           {
-            "name": "username",
-            "in": "query",
-            "description": "The user name for login",
+            "in": "body",
+            "name": "body",
+            "description": "Created user object",
             "required": true,
-            "type": "string"
-          },
-          {
-            "name": "password",
-            "in": "query",
-            "description": "The password for login in clear text",
-            "required": true,
-            "type": "string"
+            "schema": {
+              "$ref": "#/definitions/LoginData"
+            }
           }
         ],
         "responses": {
@@ -1051,7 +1046,7 @@
     }
   },
   "definitions": {
-    "UserData": {
+    "User": {
       "type": "object",
       "properties": {
         "id": {
@@ -1075,7 +1070,7 @@
         }
       }
     },
-    "User": {
+    "UserData": {
       "type": "object",
       "properties": {
         "username": {
@@ -1092,7 +1087,20 @@
         }
       }
     },
-    "GameData": {
+    "LoginData": {
+      "type": "object",
+      "properties": {
+        "email": {
+          "type": "string",
+          "example": "marcel.jean@gmail.com"
+        },
+        "password": {
+          "type": "string",
+          "example": "Mon.Super.Mot.De.Passe."
+        }
+      }
+    },
+    "Game": {
       "type": "object",
       "properties": {
         "id": {
@@ -1139,7 +1147,7 @@
         }
       }
     },
-    "Game": {
+    "GameData": {
       "type": "object",
       "properties": {
         "maxPlayers": {
@@ -1167,7 +1175,7 @@
         }
       }
     },
-    "PlayerData": {
+    "Player": {
       "type": "object",
       "properties": {
         "id": {
@@ -1216,7 +1224,7 @@
         }
       }
     },
-    "Player": {
+    "PlayerData": {
       "type": "object",
       "properties": {
         "name": {
@@ -1233,7 +1241,7 @@
         }
       }
     },
-    "RoomData": {
+    "Room": {
       "type": "object",
       "properties": {
         "id": {
@@ -1248,7 +1256,7 @@
         }
       }
     },
-    "Room": {
+    "RoomData": {
       "type": "object",
       "properties": {
         "name": {
@@ -1261,7 +1269,7 @@
         }
       }
     },
-    "RoomGameData": {
+    "RoomGame": {
       "type": "object",
       "properties": {
         "id": {
@@ -1273,7 +1281,7 @@
         }
       }
     },
-    "RoomGame": {
+    "RoomGameData": {
       "type": "object",
       "properties": {
         "isLocked": {
@@ -1282,7 +1290,7 @@
         }
       }
     },
-    "EventData": {
+    "Event": {
       "type": "object",
       "properties": {
         "id": {
@@ -1322,7 +1330,7 @@
         }
       }
     },
-    "Event": {
+    "EventData": {
       "type": "object",
       "properties": {
         "content": {
@@ -1336,7 +1344,7 @@
         }
       }
     },
-    "BuzzData": {
+    "Buzz": {
       "type": "object",
       "properties": {
         "id": {
@@ -1372,7 +1380,7 @@
         }
       }
     },
-    "Buzz": {
+    "BuzzData": {
       "type": "object",
       "properties": {
         "secret": {
@@ -1386,7 +1394,7 @@
         }
       }
     },
-    "Vote": {
+    "VoteData": {
       "type": "object",
       "properties": {
         "id": {
@@ -1403,7 +1411,7 @@
         }
       }
     },
-    "Nomination": {
+    "NominationData": {
       "type": "object",
       "properties": {
         "id": {
